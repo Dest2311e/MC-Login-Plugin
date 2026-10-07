@@ -1,0 +1,26 @@
+// ★ D3 修复（DSH 于 2026-09-27 补）——原先缺少本块，导致 `gradlew build` 失败：
+//   Execution failed for task ':compileJava'.
+//   > Could not resolve all files for configuration ':compileClasspath'.
+//     > Cannot resolve external dependency net.minecraftforge:forge:1.20.1-47.4.10_mapped_official_1.20.1
+//       because no repositories are defined.
+//   根因：工程原先用旧式 `buildscript { classpath ... }` + `apply plugin:` 引入 ForgeGradle，
+//   在 Gradle 8.x 下 ForgeGradle 自己创建的配置（compileClasspath / minecraft 等）
+//   不会继承工程的 repositories，于是报 "no repositories are defined"。
+//   官方 forge-1.20.1-47.2.0-mdk.zip 的 settings.gradle 正是用下面的 pluginManagement 块，
+//   配合 build.gradle 里的 `plugins { id 'net.minecraftforge.gradle' version '[6.0,6.2)' }`。
+//   注意：pluginManagement {} 必须是本文件的**第一个**语句（前置于 rootProject.name），
+//   否则 Gradle 报 "Only Settings scripts can contain a pluginManagement {} block / 1 error"。
+//   （未采用官方 MDK 里的 foojay-resolver 插件：本机构建用 JAVA_HOME 指向 JDK 17 即可，
+//     少一个需要联网解析的插件依赖。）
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        maven {
+            name = 'MinecraftForge'
+            url = 'https://maven.minecraftforge.net/'
+        }
+    }
+}
+
+// Gradle 设置：单模块项目
+rootProject.name = 'mc-login-forge'

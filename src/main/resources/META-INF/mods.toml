@@ -1,0 +1,36 @@
+modLoader = "javafml"
+# B0 修复：原为 "[47,)"，允许 Forge 48/49/50（MC 1.20.2~1.20.6）加载按 1.20.1 编译的
+# 代码，运行时会 NoSuchMethodError。收紧为仅匹配 1.20.1 的 Forge 47.x。
+loaderVersion = "[47,48)"
+license = "MIT"
+issueTrackerURL = "https://example.com/mclogin/issues"
+
+[[mods]]
+    modId = "mclogin"
+    version = "1.0.0"
+    displayName = "MCLogin"
+    authors = "DSH"
+    description = '''
+    Minecraft Forge 服务端登录验证模组：/register /login、PBKDF2 加密存储、反暴力破解、未登录限制。
+    '''
+    # ★ D2.5 修复（DSH 于 2026-09-27 补）：本模组是**纯服务端**模组（下面的依赖均为 side=SERVER），
+    # 但缺少本行时 displayTest 默认是 MATCH_VERSION，即要求客户端也装同版本模组 ——
+    # 结果原版客户端连服会在模组列表里显示红叉 / 连不上。
+    # IGNORE_SERVER_VERSION = 客户端不需要装这个模组。官方 MDK 对 server-only 模组的注释即如此。
+    displayTest = "IGNORE_SERVER_VERSION"
+
+[[dependencies.mclogin]]
+    modId = "forge"
+    mandatory = true
+    # B0 修复：同上，仅允许 1.20.1 对应的 Forge 47.x
+    versionRange = "[47,48)"
+    ordering = "NONE"
+    side = "SERVER"
+
+[[dependencies.mclogin]]
+    modId = "minecraft"
+    mandatory = true
+    # B0 修复：原为 "[1.20.1,1.21)"，放宽到 1.20.x 全系；收紧为仅 1.20.1
+    versionRange = "[1.20.1,1.20.2)"
+    ordering = "NONE"
+    side = "SERVER"

@@ -1,0 +1,152 @@
+// Minecraft Forge 1.20.1 MDK 标准构建脚本
+// 参考官方 MDK 结构，使用 ForgeGradle 6.x
+
+// ★ D3 修复（DSH 于 2026-09-27 补）：原先这里是旧式写法
+//     buildscript { dependencies { classpath group:'net.minecraftforge.gradle', name:'ForgeGradle', ... } }
+//     apply plugin: 'net.minecraftforge.gradle'
+//   在 Gradle 8.x 下该写法**不会**把工程的 repositories 传给 ForgeGradle 自建的配置，
+//   导致 `gradlew build` 在 :compileJava 报
+//     "Cannot resolve external dependency net.minecraftforge:forge:1.20.1-47.4.10_mapped_official_1.20.1
+//      because no repositories are defined."
+//   改为官方 MDK 的 plugins{} 写法（配套 settings.gradle 里的 pluginManagement 块）。
+//   这样 ForgeGradle 的配置能正确继承仓库，且插件版本交给官方推荐区间 [6.0,6.2) 决定。
+plugins {
+    id 'eclipse'
+    id 'idea'
+    id 'maven-publish'
+    id 'net.minecraftforge.gradle' version '[6.0,6.2)'
+}
+
+version = mod_version
+group = mod_group_id
+
+// Mojang 官方映射（1.20.1），ForgeGradle 会自动处理反混淆
+base {
+    archivesName = mod_id
+}
+
+java {
+    toolchain.languageVersion = JavaLanguageVersion.of(17)
+}
+
+// 生成的 run 目录与输出目录
+minecraft {
+    mappings channel: mapping_channel, version: mapping_version
+
+    // accessTransformer 可选，本项目不使用
+    // accessTransformer = file('build/accesstransformer.cfg')
+
+    runs {
+        client {
+            workingDirectory project.file('run')
+            // 推荐添加的调试参数
+            property 'forge.logging.markers', 'REGISTRIES'
+            property 'forge.logging.console.level', 'debug'
+            property 'forge.enabledGameTestNamespaces', mod_id
+
+            mods {
+                "${mod_id}" {
+                    source sourceSets.main
+                }
+            }
+        }
+
+        server {
+            workingDirectory project.file('run')
+            property 'forge.logging.console.level', 'debug'
+
+            mods {
+                "${mod_id}" {
+                    source sourceSets.main
+                }
+            }
+        }
+
+        gameTestServer {
+            workingDirectory project.file('run')
+            property 'forge.logging.console.level', 'debug'
+            property 'forge.enabledGameTestNamespaces', mod_id
+
+            mods {
+                "${mod_id}" {
+                    source sourceSets.main
+                }
+            }
+        }
+
+        data {
+            workingDirectory project.file('run')
+            property 'forge.logging.console.level', 'debug'
+
+            // 本项目不生成数据（配方/战利品表等），但保留标准 run 配置
+            args '--mod', mod_id, '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+
+            mods {
+                "${mod_id}" {
+                    source sourceSets.main
+                }
+            }
+        }
+    }
+}
+
+// 将 generated resources 加入资源目录（标准 MDK 行为）
+sourceSets.main.resources { srcDir 'src/generated/resources' }
+
+repositories {
+    mavenCentral()
+    // Forge / Minecraft 依赖仓库
+    maven { url = 'https://maven.minecraftforge.net/' }
+}
+
+dependencies {
+    // Forge 本体（唯一依赖）
+    minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
+
+    // P0 修复：原先这里声明了 compileOnly 'org.yaml:snakeyaml:2.2'。
+    // 经核实 —— MC 1.20.1 官方 version.json 的 88 条 libraries 中不含 org.yaml:snakeyaml，
+    // Forge 1.20.1 自身构建也不需要它（Forge 用 night-config 解析 TOML）。
+    // compileOnly 不打进 jar ⇒ 运行时首次加载 YamlStorage 即 NoClassDefFoundError，开服即崩。
+    // 现在 accounts.yml 的读写改为 data/YamlStorage.java 内置的极简 YAML writer/parser，
+    // 全项目零第三方依赖（密码学只用 JDK 自带的 javax.crypto）。
+}
+
+jar {
+    manifest {
+        attributes([
+                "Specification-Title"     : mod_id,
+                "Specification-Vendor"    : "DSH",
+                "Specification-Version"   : "1",
+                "Implementation-Title"    : project.name,
+                "Implementation-Version"  : project.jar.archiveVersion,
+                "Implementation-Vendor"   : "DSH",
+                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+        ])
+    }
+    // ★ D2.5 修复（DSH 于 2026-09-27 补）：原先缺少这一行，属**编译能过、上生产必崩**的缺陷。
+    // 1.20.1 的生产运行时是「官方类名 + SRG 方法名」：反编译 forge-1.20.1-47.2.0-universal.jar
+    // 可见其字节码以 SRG 名引用 MC 成员（如 ItemStack.m_41619_、Level.m_8055_）。
+    // 本工程按 official 映射编译，产物里是官方方法名；不 reobf 的话，生产 Forge 上
+    // 第一次调用 MC 方法就会 NoSuchMethodError。仅做"能否编译"的验收**发现不了**这个问题。
+    // 依据：官方 forge-1.20.1-47.2.0-mdk.zip 的 build.gradle 中即有 finalizedBy 'reobfJar'
+    //       （注释原文：This is the preferred method to reobfuscate your jar file）。
+    finalizedBy 'reobfJar'
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifact jar
+        }
+    }
+    repositories {
+        maven {
+            url "file://${project.projectDir}/mcmodsrepo"
+        }
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.release = 17
+}

@@ -1,0 +1,37 @@
+# Gradle
+.gradle/
+build/
+out/
+!gradle/wrapper/gradle-wrapper.jar
+
+# Eclipse
+*.launch
+.settings/
+.metadata/
+.classpath
+.project
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Visual Studio Code
+.vscode/
+
+# macOS
+.DS_Store
+
+# Forge 运行目录 / 生成资源
+run/
+run-data/
+src/generated/
+
+# 运行时数据（账号库，不应提交）
+accounts.yml
+accounts.yml.bak
+
+# 日志
+logs/
+*.log

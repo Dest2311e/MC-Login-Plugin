@@ -1,0 +1,74 @@
+{
+  "mclogin.verifying": "§7Verifying, please wait...",
+  "mclogin.busy": "§cToo many attempts, please slow down.",
+  "mclogin.internal_error": "§cInternal error, please try again later.",
+  "mclogin.player_only": "§c[MCLogin] This command can only be used by players.",
+
+  "mclogin.password.empty": "§cPassword cannot be empty.",
+  "mclogin.password.too_short": "§cPassword must be at least %s characters.",
+  "mclogin.password.too_long": "§cPassword must be at most %s characters.",
+
+  "mclogin.register.already": "§cYou are already registered. Use /login <password> to log in.",
+  "mclogin.register.mismatch": "§cThe two passwords do not match. Please try again.",
+  "mclogin.register.success": "§aRegistered and logged in. Remember your password!",
+
+  "mclogin.login.already": "§eYou are already logged in.",
+  "mclogin.login.locked": "§cToo many attempts. Temporarily locked, retry in %s s.",
+  "mclogin.login.failed": "§cWrong username or password.",
+  "mclogin.login.success": "§aLogin successful. Welcome back!",
+
+  "mclogin.player.not_registered": "§cYou are not registered.",
+
+  "mclogin.changepassword.need_login": "§cLog in before changing your password.",
+  "mclogin.changepassword.old_wrong": "§cOld password is incorrect.",
+  "mclogin.changepassword.success": "§aPassword changed. Use the new one next time. (Session auto-login has been reset)",
+
+  "mclogin.unregister.need_login": "§cLog in before unregistering.",
+  "mclogin.unregister.wrong": "§cWrong password. Account not removed.",
+  "mclogin.unregister.success": "§eAccount removed. Please /register again.",
+
+  "mclogin.reload.done": "§a[MCLogin] Accounts reloaded; IP guard state cleared.",
+  "mclogin.reload.rescue": "§e(Pending unsaved changes were exported to %s)",
+  "mclogin.reload.rescue_failed": "§c(Pending unsaved changes, but the rescue export FAILED - check the logs!)",
+
+  "mclogin.status.base": "§6[MCLogin]§r accounts=%s, online=%s, tracked IPs=%s",
+  "mclogin.status.pending": "§c, UNSAVED CHANGES pending",
+  "mclogin.status.synced": ", storage in sync",
+  "mclogin.status.failures": "§c, %s consecutive save failures",
+  "mclogin.status.suspect": "§c, on-disk accounts.yml looks unparsable - in-memory state kept (check indentation/backups)",
+
+  "mclogin.session.autologin": "§eAuto-logged-in via session (same IP, last login %s s ago).",
+
+  "mclogin.timeout.kick": "§c[MCLogin] Login timeout (%s s). Please reconnect and /login.",
+  "mclogin.timeout.warning": "§c[MCLogin] You will be disconnected in %s s unless you /login now!",
+
+  "mclogin.join.register": "§6[MCLogin] Welcome! Register first: /register <password> <confirm>",
+  "mclogin.join.login": "§6[MCLogin] Please log in: /login <password>",
+  "mclogin.join.locked": "§cThis account is locked for another %s s.",
+  "mclogin.join.timeout": "§7You have %s s to log in, or you will be disconnected.",
+
+  "mclogin.restrict.chat": "§cLog in before chatting: /login <password>",
+  "mclogin.restrict.command": "§cYou must /login (or /register) before using other commands.",
+
+  "mclogin.ui.boss.hint": "§cNot logged in: type /login <password> or use the menu",
+  "mclogin.ui.title.hint": "§cPlease log in",
+  "mclogin.ui.actionbar.hint": "§e/register <password> <confirm> to sign up　§7|　§e/login <password>",
+  "mclogin.ui.menu.title": "§8MCLogin menu",
+  "mclogin.ui.button.login": "§aClick to log in",
+  "mclogin.ui.button.register": "§eClick to register",
+  "mclogin.ui.button.status": "§bAccount status",
+  "mclogin.ui.status.header": "§7—— Account status ——",
+  "mclogin.ui.status.registered": "§aThis account is registered. Enter your password to log in.",
+  "mclogin.ui.status.unregistered": "§cThis account is not registered yet.",
+  "mclogin.ui.status.hint": "§7Commands also work: /login <password> or /register <password> <confirm>",
+  "mclogin.ui.anvil.login_prompt": "§eType your password in the anvil's NAME FIELD, then click the output slot to submit.",
+  "mclogin.ui.anvil.register_prompt": "§eType the password you want in the NAME FIELD, then click the output slot.",
+  "mclogin.ui.anvil.confirm_prompt": "§eType the same password again to confirm.",
+  "mclogin.ui.anvil.generic_prompt": "§eType your input in the NAME FIELD, then click the output slot.",
+  "mclogin.ui.anvil.carrier": "§7← type here",
+  "mclogin.ui.anvil.hint.register": "§7Type your registration password in the NAME FIELD below, then click the output slot",
+  "mclogin.ui.anvil.hint.confirm": "§7Type the same password again to confirm",
+  "mclogin.ui.anvil.hint.login": "§7Type your login password in the NAME FIELD below",
+  "mclogin.ui.anvil.hint.changepassword": "§7Type your NEW password in the NAME FIELD below",
+  "mclogin.ui.anvil.empty": "§cNothing was read. Please try again."
+}
