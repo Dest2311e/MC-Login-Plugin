@@ -76,6 +76,14 @@ public final class MCLoginMod {
      */
     private final HashExecutor hashExecutor = new HashExecutor();
 
+    private final com.dsh.mclogin.security.PasswordResetService passwordReset =
+            new com.dsh.mclogin.security.PasswordResetService(this);
+
+    /** Optional recovery integration. No provider is installed by default. */
+    public com.dsh.mclogin.security.PasswordResetService getPasswordReset() {
+        return passwordReset;
+    }
+
     /**
      * 构造入口，由 FML 调用。
      */
@@ -181,6 +189,7 @@ public final class MCLoginMod {
      */
     @SubscribeEvent
     public void onServerStopped(final ServerStoppedEvent event) {
+        passwordReset.clear();
         sessions.clear();
         guard.clearIpStates();
         // G8-1：先停异步执行器（不再受理新派生），再做最后一次落盘

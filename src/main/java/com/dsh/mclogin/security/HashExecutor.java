@@ -155,6 +155,11 @@ public final class HashExecutor {
         pool.shutdownNow();
     }
 
+    public boolean isInFlight(UUID uuid) {
+        Long slot = slots.get(uuid);
+        return slot != null && slot > 0;
+    }
+
     /**
      * 池内工作线程数（启动日志用）。
      *

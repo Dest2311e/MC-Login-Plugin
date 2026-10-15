@@ -39,7 +39,9 @@ public final class UiSession {
         /** 正在用铁砧采集"注册密码"（第一步）。 */
         REGISTER_INPUT,
         /** 正在用铁砧采集"确认密码"（第二步）。 */
-        REGISTER_CONFIRM
+        REGISTER_CONFIRM,
+        RESET_INPUT,
+        RESET_CONFIRM
     }
 
     private static final Map<UUID, UiSession> SESSIONS = new ConcurrentHashMap<>();
@@ -168,17 +170,24 @@ public final class UiSession {
 
     /** 展示/刷新"未登录"提示血条（幂等）。 */
     public void showBossBar(final ServerPlayer player) {
-        if (bossBar != null) {
-            return;
+        MCLoginMod mod = MCLoginMod.getInstance();
+        if (bossBar == null) {
+            bossBar = new ServerBossEvent(Component.empty(), BossEvent.BossBarColor.BLUE,
+                    BossEvent.BossBarOverlay.PROGRESS);
+            bossBar.addPlayer(player);
+            bossBarOwner = player;
         }
-        final ServerBossEvent bar = new ServerBossEvent(
-                MessageService.component("mclogin.ui.boss.hint"),
-                BossEvent.BossBarColor.RED,
-                BossEvent.BossBarOverlay.PROGRESS);
-        bar.setProgress(1.0F);
-        bar.addPlayer(player);
-        this.bossBar = bar;
-        this.bossBarOwner = player;
+        String action = mod.getStorage().isLastLoadSuspect() ? "mclogin.ui.boss.unavailable"
+                : mod.getPasswordReset().isPending(player.getUUID()) ? "mclogin.ui.boss.verify"
+                : mod.getPasswordReset().isAuthorized(player) ? "mclogin.ui.boss.reset"
+                : mod.getStorage().has(player.getUUID()) ? "mclogin.ui.boss.login" : "mclogin.ui.boss.register";
+        int timeout = mod.getConfig().getLoginTimeoutSeconds();
+        long remaining = Math.max(0, timeout - mod.getSessions().elapsedSinceJoinMillis(player.getUUID()) / 1000);
+        Component name = MessageService.component(action);
+        if (timeout > 0) name = name.copy().append(MessageService.component("mclogin.ui.boss.remaining", remaining));
+        bossBar.setName(name);
+        bossBar.setProgress(timeout <= 0 ? 1F : Math.min(1F, (float) remaining / timeout));
+        bossBar.setColor(timeout > 0 && remaining <= 30 ? BossEvent.BossBarColor.RED : BossEvent.BossBarColor.BLUE);
     }
 
     /** 移除提示血条（幂等）。 */
@@ -196,6 +205,7 @@ public final class UiSession {
 
     /** 打开主菜单（箱子 GUI）。 */
     public void openMenu(final MCLoginMod mod, final ServerPlayer player) {
+        clearPendingText();
         setStage(Stage.MENU);
         player.openMenu(new MainMenu.Provider(mod));
     }
@@ -226,6 +236,10 @@ public final class UiSession {
             case REGISTER_INPUT:
                 return MessageService.component("mclogin.ui.anvil.register_prompt");
             case REGISTER_CONFIRM:
+                return MessageService.component("mclogin.ui.anvil.confirm_prompt");
+            case RESET_INPUT:
+                return MessageService.component("mclogin.ui.anvil.reset_prompt");
+            case RESET_CONFIRM:
                 return MessageService.component("mclogin.ui.anvil.confirm_prompt");
             default:
                 return MessageService.component("mclogin.ui.anvil.generic_prompt");

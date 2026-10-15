@@ -252,20 +252,31 @@ public final class YamlStorage {
      * <p>另：本方法在<b>即将用磁盘内容覆盖内存之前</b>，若存在未落盘改动会先导出救援副本，
      * 使"开服路径"与"{@code /mclogin reload} 路径"获得同等保护。
      */
-    public void load() {
+    public boolean load() {
+        synchronized (fileLock) {
+            return loadLocked();
+        }
+    }
+
+    private boolean loadLocked() {
         // 代际在读取之前取：解析期间到来的改动不会被视为"已被本次加载覆盖"。
         final long generationAtStart = generation.get();
         final Path file = getFile();
         if (!Files.exists(file)) {
+            if (!cache.isEmpty() || lastLoadSuspect) {
+                lastLoadSuspect = true;
+                return false;
+            }
             MCLoginMod.LOGGER.info("[MCLogin] 未找到账号文件 {}，将使用空账号库", file);
-            return;
+            return true;
         }
         final List<String> lines;
         try {
             lines = Files.readAllLines(file, StandardCharsets.UTF_8);
         } catch (final IOException ex) {
             MCLoginMod.LOGGER.error("[MCLogin] 读取账号文件失败：{}", file, ex);
-            return;
+            lastLoadSuspect = true;
+            return false;
         }
 
         final ParseResult parsed;
@@ -273,17 +284,19 @@ public final class YamlStorage {
             parsed = parseAccounts(lines);
         } catch (final RuntimeException ex) {
             MCLoginMod.LOGGER.error("[MCLogin] 解析账号 YAML 失败，保留原有缓存", ex);
-            return;
+            lastLoadSuspect = true;
+            return false;
         }
 
         // ---------- P0 防护点：有 accounts 段（且非显式空库标记）却 0 条 = 解析异常 ----------
-        if (parsed.hasAccountsSection() && !parsed.explicitEmpty() && parsed.accounts().isEmpty()) {
+        if (!parsed.hasAccountsSection() || (!parsed.explicitEmpty() && parsed.accounts().isEmpty()
+                && !isLegacyEmptyStore(lines))) {
             lastLoadSuspect = true;
             final int keptInMemory = cache.size();
             final Path keptCopy = preserveUnparsableCopy(file);
             if (keptInMemory > 0) {
                 MCLoginMod.LOGGER.warn(
-                        "[MCLogin] 危险：{} 中存在 accounts 段却没有解析出任何账号，已判定为解析异常。", file);
+                        "[MCLogin] 危险：{} 缺失有效 accounts 段或内容无法解析，已阻止注册与覆盖保存。", file);
                 MCLoginMod.LOGGER.warn(
                         "[MCLogin] 已保留内存中原有的 {} 条账号，不会用本次结果覆盖；磁盘原文另留档为 {}。"
                                 + "请用 /mclogin status 确认并手工核对备份后再改动该文件。",
@@ -292,15 +305,14 @@ public final class YamlStorage {
                 // 内存本来就是空的：可能是合法的空账号库，也可能是首次开服就读不懂。
                 // 行为与上分支一致（保留内存态），但措辞不同，避免运维误以为丢过数据。
                 MCLoginMod.LOGGER.warn(
-                        "[MCLogin] 提示：{} 中存在 accounts 段却没有解析出任何账号，且当前内存为空。"
-                                + "若确认账号库本应为空可忽略；否则请检查缩进后重载。磁盘原文另留档为 {}。",
+                        "[MCLogin] 账号库 {} 加载失败，当前内存为空，已阻止注册与覆盖保存。"
+                                + "请检查文件并重载。磁盘原文另留档为 {}。",
                         file, keptCopy);
             }
             // 早退：保留原缓存与原代际（故意不调用 markPersistedUpTo）。
             // 这样内存态仍被视为"比磁盘新"，后续落盘把内存里的好数据写回磁盘，而不是相反。
-            return;
+            return false;
         }
-        lastLoadSuspect = false;
         if (parsed.explicitEmpty() && parsed.accounts().isEmpty()) {
             // 运维用 accounts: {} 显式声明空库 —— 这是合法清空，不是解析异常。
             // （若 {} 之后又跟着正常条目，则解析结果非空，走常规加载，不打这条日志。）
@@ -310,19 +322,30 @@ public final class YamlStorage {
         }
 
         // 覆盖内存前：存在未落盘改动则先导出救援副本（开服路径与 reload 路径同等保护）。
-        exportRescueCopyIfPending();
-
-        cache.clear();
+        final Map<UUID, PlayerAccount> replacement = new HashMap<>();
         int loaded = 0;
         for (final Map.Entry<String, Map<String, String>> entry : parsed.accounts().entrySet()) {
             try {
                 final UUID uuid = UUID.fromString(entry.getKey());
-                cache.put(uuid, fromMap(uuid, entry.getValue()));
+                PlayerAccount account = fromMap(uuid, entry.getValue());
+                if (account.getHash().isEmpty() || account.getSalt().isEmpty()) {
+                    throw new IllegalArgumentException("Missing password fields");
+                }
+                replacement.put(uuid, account);
                 loaded++;
             } catch (final IllegalArgumentException ex) {
-                MCLoginMod.LOGGER.warn("[MCLogin] 跳过非法 UUID 记录：{}", entry.getKey());
+                MCLoginMod.LOGGER.warn("[MCLogin] 账号记录不完整或 UUID 非法，取消整次重载：{}", entry.getKey());
+                lastLoadSuspect = true;
+                preserveUnparsableCopy(file);
+                return false;
             }
         }
+        if (hasPendingChanges() && lastRescueGeneration != generation.get() && exportRescueCopy() == null) {
+            return false;
+        }
+        cache.clear();
+        cache.putAll(replacement);
+        lastLoadSuspect = false;
         MCLoginMod.LOGGER.info("[MCLogin] 已加载 {} 条账号记录", loaded);
 
         // 内存态已被磁盘内容整体替换，代际随之对齐；否则 reload 之后
@@ -330,6 +353,20 @@ public final class YamlStorage {
         // 注意：只有走到这里（解析并替换成功）才对齐；文件缺失/读取失败/解析失败
         // 三种早退分支保持原缓存与原代际，改动仍会被后续保存写回。
         markPersistedUpTo(generationAtStart);
+        return true;
+    }
+
+    /** Accept the exact empty form written by 1.0.0, without accepting malformed child rows. */
+    private static boolean isLegacyEmptyStore(List<String> lines) {
+        boolean found = false;
+        for (String line : lines) {
+            String value = line.trim();
+            if (value.isEmpty() || value.startsWith("#")) continue;
+            if (found) return false;
+            if (line.equals("accounts:")) found = true;
+            else if (!line.equals("version: 1")) return false;
+        }
+        return found;
     }
 
     /**
@@ -537,6 +574,9 @@ public final class YamlStorage {
      */
     private IOException writeOnce() {
         synchronized (fileLock) {
+            if (lastLoadSuspect) {
+                return new IOException("Account load failed; refusing to overwrite the account file");
+            }
             // 快照代际必须在 dump 之前取：dump 之后发生的改动必然使 generation > snapshot，
             // 于是被判定为"尚未落盘"，绝不会被本次保存冒充成功。
             final long snapshot = generation.get();
@@ -784,7 +824,7 @@ public final class YamlStorage {
         sb.append('#').append(" MCLogin 账号库 —— 请勿手工编辑，编辑前请先备份\n");
         sb.append('#').append(" hash 为 PBKDF2WithHmacSHA256 派生结果（Base64），本文件不含任何明文密码\n");
         sb.append(KEY_VERSION).append(": ").append(FORMAT_VERSION).append('\n');
-        sb.append(KEY_ACCOUNTS).append(':').append('\n');
+        sb.append(KEY_ACCOUNTS).append(sorted.isEmpty() ? ": {}" : ":").append('\n');
         for (final Map.Entry<String, PlayerAccount> entry : sorted.entrySet()) {
             final PlayerAccount account = entry.getValue();
             // [C-N1] 账号级加锁：主线程可能正在 applyNewPassword（改密 / 登录后收敛迭代数），

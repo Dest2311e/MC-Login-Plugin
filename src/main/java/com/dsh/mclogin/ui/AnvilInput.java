@@ -3,6 +3,7 @@ package com.dsh.mclogin.ui;
 import com.dsh.mclogin.MCLoginMod;
 import com.dsh.mclogin.command.LoginCommands;
 import com.dsh.mclogin.message.MessageService;
+import com.dsh.mclogin.message.SoundService;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
@@ -117,9 +118,12 @@ public final class AnvilInput {
                 case REGISTER_INPUT:
                     return MessageService.component("mclogin.ui.anvil.hint.register");
                 case REGISTER_CONFIRM:
+                case RESET_CONFIRM:
                     return MessageService.component("mclogin.ui.anvil.hint.confirm");
                 case LOGIN_INPUT:
                     return MessageService.component("mclogin.ui.anvil.hint.login");
+                case RESET_INPUT:
+                    return MessageService.component("mclogin.ui.anvil.hint.changepassword");
                 default:
                     // 预留：未来若 UI 增加改密阶段（changepassword），走 hint.changepassword；
                     // 现阶段其余阶段不会打开铁砧，兜底给登录提示
@@ -145,15 +149,31 @@ public final class AnvilInput {
             return false;
         }
 
+        /** A stable submit button; never echo the password into item names or NBT. */
+        @Override
+        public void createResult() {
+            ItemStack submit = new ItemStack(Items.LIME_DYE);
+            submit.setHoverName(MessageService.component("mclogin.ui.anvil.submit"));
+            this.resultSlots.setItem(0, submit);
+            this.setMaximumCost(0);
+            this.broadcastChanges();
+        }
+
+        @Override
+        protected boolean mayPickup(Player player, boolean hasStack) {
+            return true; // clicked() consumes the action; nothing is actually taken.
+        }
+
         /** 点击：输出格 = 提交；其余格子一律吞掉（防止玩家从界面里拿走/塞入物品）。 */
         @Override
         public void clicked(final int slotId, final int button, final ClickType type, final Player player) {
             if (!(player instanceof ServerPlayer serverPlayer)) {
                 return;
             }
-            if (slotId != RESULT_SLOT) {
+            if (slotId != RESULT_SLOT || type != ClickType.PICKUP || button != 0) {
                 return;
             }
+            SoundService.play(serverPlayer, SoundService.UI_CLICK);
             submit(serverPlayer);
         }
 
@@ -161,6 +181,9 @@ public final class AnvilInput {
         private void submit(final ServerPlayer player) {
             final UiSession ui = UiSession.of(player.getUUID());
             final String text = ui.takePendingText();
+            // Capture cross-step text before closeContainer clears sensitive UI buffers.
+            final String first = (stage == UiSession.Stage.REGISTER_CONFIRM || stage == UiSession.Stage.RESET_CONFIRM)
+                    ? ui.takeRegisterFirstPass() : "";
             final MinecraftServer server = player.getServer();
             if (server == null) {
                 return;
@@ -169,6 +192,8 @@ public final class AnvilInput {
             player.closeContainer();
 
             if (text.isEmpty()) {
+                SoundService.play(player, SoundService.LOGIN_FAILED);
+                ui.setRegisterFirstPass(first);
                 player.sendSystemMessage(MessageService.component("mclogin.ui.anvil.empty"));
                 ui.openAnvil(mod, player, stage);
                 return;
@@ -186,7 +211,6 @@ public final class AnvilInput {
                     ui.openAnvil(mod, player, UiSession.Stage.REGISTER_CONFIRM);
                     return;
                 case REGISTER_CONFIRM:
-                    final String first = ui.takeRegisterFirstPass();
                     if (first.isEmpty()) {
                         // 会话丢了（例如中途断了/被清），退回第一步重来
                         player.sendSystemMessage(MessageService.component("mclogin.ui.anvil.empty"));
@@ -194,7 +218,21 @@ public final class AnvilInput {
                         return;
                     }
                     ui.armRetry();
-                    LoginCommands.registerWithPassword(mod, player, server, first, text);
+                    if (LoginCommands.registerWithPassword(mod, player, server, first, text) == 0) {
+                        SoundService.play(player, SoundService.LOGIN_FAILED);
+                    }
+                    return;
+                case RESET_INPUT:
+                    if (!mod.getPasswordReset().isAuthorized(player)) {
+                        player.sendSystemMessage(MessageService.component("mclogin.reset.expired"));
+                        ui.openMenu(mod, player);
+                        return;
+                    }
+                    ui.setRegisterFirstPass(text);
+                    ui.openAnvil(mod, player, UiSession.Stage.RESET_CONFIRM);
+                    return;
+                case RESET_CONFIRM:
+                    mod.getPasswordReset().reset(player, first, text);
                     return;
                 default:
                     // 其它阶段不该走到这里
@@ -203,10 +241,13 @@ public final class AnvilInput {
 
         @Override
         public void removed(final Player player) {
+            // The paper is a UI carrier, not a reward returned to the inventory.
+            this.inputSlots.clearContent();
             super.removed(player);
             // R10-A：界面关闭（提交/主动关闭/断线）时清掉 action bar 提示，
             // 避免残留的"请输入密码"在登录后还挂在屏幕底部
             if (player instanceof ServerPlayer serverPlayer) {
+                UiSession.of(serverPlayer.getUUID()).clearPendingText();
                 serverPlayer.displayClientMessage(Component.empty(), true);
             }
         }

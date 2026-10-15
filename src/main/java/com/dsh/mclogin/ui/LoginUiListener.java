@@ -37,7 +37,7 @@ public final class LoginUiListener {
     private static final int OPEN_DELAY_TICKS = 20;
 
     /** 登录态轮询周期（tick）。 */
-    private static final int POLL_INTERVAL_TICKS = 20;
+    private static final int POLL_INTERVAL_TICKS = 10;
 
     private final MCLoginMod mod;
 
@@ -71,6 +71,7 @@ public final class LoginUiListener {
         }
         final UUID uuid = player.getUUID();
         pendingOpen.remove(uuid);
+        mod.getPasswordReset().discard(uuid);
         UiSession.discard(uuid);
     }
 
@@ -86,6 +87,7 @@ public final class LoginUiListener {
             return;
         }
         tickCounter++;
+        mod.getPasswordReset().tick();
 
         // 1) 待开界面倒计时
         if (!pendingOpen.isEmpty()) {
@@ -123,7 +125,7 @@ public final class LoginUiListener {
             if (ui.getStage() != UiSession.Stage.NONE) {
                 ui.setStage(UiSession.Stage.NONE);
                 ui.clearPendingText();
-                player.closeContainer();
+                if (player.containerMenu instanceof LoginUiMenu) player.closeContainer();
             }
             // 血条不在此处关：hideBossBar 幂等，重复调用无副作用
             ui.hideBossBar();
@@ -133,11 +135,15 @@ public final class LoginUiListener {
         if (!mod.getConfig().isEnableLoginUi()) {
             return;
         }
+        if (!player.isAlive() || player.hasDisconnected() || pendingOpen.containsKey(uuid)) return;
         ui.showBossBar(player);
-        // 从 UI 提交过一次但仍是未登录（密码错/未注册/被拒）→ 把主菜单还回来，
-        // 否则玩家会卡在"没有任何界面、又不想用命令"的状态（真机测试抓到的缺陷）。
-        if (ui.retryDue() && player.containerMenu == player.inventoryMenu) {
-            ui.openMenu(mod, player);
+        // Closing the UI never dismisses authentication. Reopen without repeated sounds.
+        if (!(player.containerMenu instanceof LoginUiMenu)) {
+            if (mod.getPasswordReset().isAuthorized(player)) {
+                ui.openAnvil(mod, player, UiSession.Stage.RESET_INPUT);
+            } else {
+                ui.openMenu(mod, player);
+            }
         }
     }
 
@@ -147,12 +153,16 @@ public final class LoginUiListener {
             return;
         }
         final UiSession ui = UiSession.of(player.getUUID());
+        if (!player.isAlive()) return;
         ui.showBossBar(player);
         // 标题 + 动作栏：比聊天栏一行字醒目（纯展示包，原版客户端直接可见）
         player.connection.send(new ClientboundSetTitleTextPacket(
-                MessageService.component("mclogin.ui.title.hint")));
+                MessageService.component(mod.getStorage().isLastLoadSuspect() ? "mclogin.ui.title.unavailable"
+                        : mod.getStorage().has(player.getUUID())
+                        ? "mclogin.ui.title.hint" : "mclogin.ui.title.register")));
         player.connection.send(new ClientboundSetActionBarTextPacket(
-                MessageService.component("mclogin.ui.actionbar.hint")));
+                MessageService.component(mod.getStorage().isLastLoadSuspect() ? "mclogin.storage.unavailable"
+                        : mod.getStorage().has(player.getUUID()) ? "mclogin.join.login" : "mclogin.join.register")));
         ui.openMenu(mod, player);
     }
 }

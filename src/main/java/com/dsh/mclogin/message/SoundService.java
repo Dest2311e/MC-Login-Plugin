@@ -38,6 +38,7 @@ public final class SoundService {
 
     /** 登录成功：经验球拾取音，轻快不吵（比 CHIME 更短促，适合每次登录）。 */
     public static final SoundEvent LOGIN_SUCCESS = SoundEvents.EXPERIENCE_ORB_PICKUP;
+    public static final SoundEvent UI_CLICK = SoundEvents.UI_BUTTON_CLICK.value();
 
     /** 登录失败：村民拒绝音，语义直白（"不行"）。 */
     public static final SoundEvent LOGIN_FAILED = SoundEvents.VILLAGER_NO;

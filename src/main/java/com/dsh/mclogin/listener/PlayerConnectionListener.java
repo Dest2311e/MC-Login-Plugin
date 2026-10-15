@@ -87,6 +87,10 @@ public final class PlayerConnectionListener {
                 com.dsh.mclogin.message.SoundService.JOIN_HINT);
 
         final PlayerAccount account = mod.getStorage().get(uuid);
+        if (mod.getStorage().isLastLoadSuspect()) {
+            player.sendSystemMessage(com.dsh.mclogin.message.MessageService.component("mclogin.storage.unavailable"));
+            return;
+        }
         if (account == null) {
             player.sendSystemMessage(com.dsh.mclogin.message.MessageService.component("mclogin.join.register"));
         } else {
@@ -115,6 +119,7 @@ public final class PlayerConnectionListener {
      * @return true = 已自动放行（调用方应跳过登录提示与冻结）
      */
     private boolean trySessionAutoLogin(final ServerPlayer player) {
+        if (mod.getStorage().isLastLoadSuspect()) return false;
         final LoginConfig config = mod.getConfig();
         // 硬约束②⑥：总开关默认 false；时限 0 = 关闭
         if (!config.isEnableSessionAutoLogin()) {

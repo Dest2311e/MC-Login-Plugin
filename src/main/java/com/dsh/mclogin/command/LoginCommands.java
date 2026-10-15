@@ -143,6 +143,10 @@ public final class LoginCommands {
         final YamlStorage storage = mod.getStorage();
         final UUID uuid = player.getUUID();
 
+        if (storage.isLastLoadSuspect()) {
+            send(player, msg("mclogin.storage.unavailable"));
+            return 0;
+        }
         if (storage.has(uuid)) {
             send(player, msg("mclogin.register.already"));
             return 0;
@@ -184,6 +188,10 @@ public final class LoginCommands {
         }
         final YamlStorage storage = mod.getStorage();
         final UUID uuid = player.getUUID();
+        if (storage.isLastLoadSuspect()) {
+            send(player, msg("mclogin.storage.unavailable"));
+            return;
+        }
         if (storage.has(uuid)) {
             // 派生期间该 UUID 被并发注册（同 UUID 去重已挡住本人，此处防外部写路径）
             send(player, msg("mclogin.register.already"));
@@ -593,7 +601,10 @@ public final class LoginCommands {
         final YamlStorage storage = mod.getStorage();
         final boolean hasPending = storage.hasPendingChanges();
         final Path rescue = hasPending ? storage.exportRescueCopy() : null;
-        storage.load();
+        if ((hasPending && rescue == null) || !storage.load()) {
+            ctx.getSource().sendFailure(msg("mclogin.reload.failed"));
+            return 0;
+        }
         mod.getGuard().clearIpStates();
         // 1.20.1 中 CommandSourceStack#sendSuccess 的签名是 sendSuccess(Supplier<Component>, boolean)。
         // U2：拼接改用可追加组件 + translatable（不再字符串相拼，避免退化回 literal）。
@@ -672,7 +683,7 @@ public final class LoginCommands {
      * @param config   配置
      * @return 错误提示组件；null 表示通过
      */
-    private static Component passwordPolicyError(final String password, final LoginConfig config) {
+    public static Component passwordPolicyError(final String password, final LoginConfig config) {
         if (password == null || password.isEmpty()) {
             return msg("mclogin.password.empty");
         }
@@ -681,6 +692,9 @@ public final class LoginCommands {
         }
         if (password.length() > config.getMaxPasswordLength()) {
             return msg("mclogin.password.too_long", config.getMaxPasswordLength());
+        }
+        if (password.chars().anyMatch(Character::isWhitespace)) {
+            return msg("mclogin.password.whitespace");
         }
         return null;
     }

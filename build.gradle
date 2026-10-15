@@ -150,3 +150,10 @@ tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
     options.release = 17
 }
+
+tasks.register('securityChecks', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'com.dsh.mclogin.security.ResetTicketsTest'
+}
+tasks.named('check') { dependsOn 'securityChecks' }
