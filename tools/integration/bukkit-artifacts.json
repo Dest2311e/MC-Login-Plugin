@@ -1,0 +1,179 @@
+[
+  {
+    "file": "paper-1.20.4.jar",
+    "url": "https://fill-data.papermc.io/v1/objects/cabed3ae77cf55deba7c7d8722bc9cfd5e991201c211665f9265616d9fe5c77b/paper-1.20.4-499.jar",
+    "sha256": "cabed3ae77cf55deba7c7d8722bc9cfd5e991201c211665f9265616d9fe5c77b",
+    "minecraft": "1.20.4",
+    "build": 499
+  },
+  {
+    "file": "paper-1.20.6.jar",
+    "url": "https://fill-data.papermc.io/v1/objects/4b011f5adb5f6c72007686a223174fce82f31aeb4b34faf4652abc840b47e640/paper-1.20.6-151.jar",
+    "sha256": "4b011f5adb5f6c72007686a223174fce82f31aeb4b34faf4652abc840b47e640",
+    "minecraft": "1.20.6",
+    "build": 151
+  },
+  {
+    "file": "paper-1.21.1.jar",
+    "url": "https://fill-data.papermc.io/v1/objects/39bd8c00b9e18de91dcabd3cc3dcfa5328685a53b7187a2f63280c22e2d287b9/paper-1.21.1-133.jar",
+    "sha256": "39bd8c00b9e18de91dcabd3cc3dcfa5328685a53b7187a2f63280c22e2d287b9",
+    "minecraft": "1.21.1",
+    "build": 133
+  },
+  {
+    "file": "paper-1.21.4.jar",
+    "url": "https://fill-data.papermc.io/v1/objects/5ee4f542f628a14c644410b08c94ea42e772ef4d29fe92973636b6813d4eaffc/paper-1.21.4-232.jar",
+    "sha256": "5ee4f542f628a14c644410b08c94ea42e772ef4d29fe92973636b6813d4eaffc",
+    "minecraft": "1.21.4",
+    "build": 232
+  },
+  {
+    "file": "paper-1.21.8.jar",
+    "url": "https://fill-data.papermc.io/v1/objects/8de7c52c3b02403503d16fac58003f1efef7dd7a0256786843927fa92ee57f1e/paper-1.21.8-60.jar",
+    "sha256": "8de7c52c3b02403503d16fac58003f1efef7dd7a0256786843927fa92ee57f1e",
+    "minecraft": "1.21.8",
+    "build": 60
+  },
+  {
+    "file": "paper-1.21.11.jar",
+    "url": "https://fill-data.papermc.io/v1/objects/5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba/paper-1.21.11-132.jar",
+    "sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+    "minecraft": "1.21.11",
+    "build": 132
+  },
+  {
+    "file": "EssentialsX-2.22.0.jar",
+    "url": "https://github.com/EssentialsX/Essentials/releases/download/2.22.0/EssentialsX-2.22.0.jar",
+    "sha256": "bda4685105977fca2e209820a9f0ad24275bd103390a03236f38e59bfdac58e6",
+    "version": "2.22.0"
+  },
+  {
+    "file": "Vault.jar",
+    "url": "https://github.com/MilkBowl/Vault/releases/download/1.7.3/Vault.jar",
+    "sha256": "a6b5ed97f43a5cf5bbaf00a7c8cd23c5afc9bd003f849875af8b36e6cf77d01d",
+    "version": "1.7.3"
+  },
+  {
+    "file": "PlaceholderAPI-2.11.6.jar",
+    "url": "https://repo.extendedclip.com/releases/me/clip/placeholderapi/2.11.6/placeholderapi-2.11.6.jar",
+    "sha256": "b20cb09db1cd79f76b9172e5114dfde6f34c558069e3bd7b72b14f718bc5dffd",
+    "version": "2.11.6"
+  },
+  {
+    "file": "worldedit-bukkit-7.4.0.jar",
+    "url": "https://cdn.modrinth.com/data/1u6JkXh5/versions/CkT32vix/worldedit-bukkit-7.4.0.jar",
+    "sha256": "28418ec52223785ad3ddb0fabbed3460eacb7fd9d7774c842f443fb5c7fb4937",
+    "version": "7.4.0",
+    "game_versions": [
+      "1.21.4",
+      "1.21.5",
+      "1.21.6",
+      "1.21.7",
+      "1.21.8",
+      "1.21.9",
+      "1.21.10",
+      "1.21.11"
+    ]
+  },
+  {
+    "file": "worldguard-bukkit-7.0.15.jar",
+    "url": "https://cdn.modrinth.com/data/DKY9btbd/versions/WaElxvDz/worldguard-bukkit-7.0.15.jar",
+    "sha256": "82109263128cb2232fd0e987f8f8bfa145f6a071c5fa92cf3d221922af863c74",
+    "version": "7.0.15",
+    "game_versions": [
+      "1.21.10",
+      "1.21.11"
+    ]
+  },
+  {
+    "file": "worldedit-bukkit-7.3.9.jar",
+    "url": "https://cdn.modrinth.com/data/1u6JkXh5/versions/Bu1zaaoc/worldedit-bukkit-7.3.9.jar",
+    "sha256": "75df26f120ff424e62cba3a6e41b3b4e496251d5613b3c55c5f35b96bd8fd57c",
+    "version": "7.3.9",
+    "game_versions": [
+      "1.20.2",
+      "1.20.3",
+      "1.20.4",
+      "1.20.5",
+      "1.20.6",
+      "1.21",
+      "1.21.1",
+      "1.21.2",
+      "1.21.3"
+    ]
+  },
+  {
+    "file": "worldguard-bukkit-7.0.9-dist.jar",
+    "url": "https://cdn.modrinth.com/data/DKY9btbd/versions/NpagB1YQ/worldguard-bukkit-7.0.9-dist.jar",
+    "sha256": "0c04d30c0c98c21e820dec6f7e380993416a293d7e2646849f6dcd4efdc24287",
+    "version": "7.0.9",
+    "game_versions": [
+      "1.20",
+      "1.20.1",
+      "1.20.2",
+      "1.20.4"
+    ]
+  },
+  {
+    "file": "floodgate-spigot.jar",
+    "url": "https://download.geysermc.org/v2/projects/floodgate/versions/2.2.5/builds/141/downloads/spigot",
+    "sha256": "21570aff9ce17d6983928e8552777760e1ede5050026b04c686b0ae112e6fd7e",
+    "version": "2.2.5",
+    "build": 141
+  },
+  {
+    "file": "Geyser-Spigot.jar",
+    "url": "https://download.geysermc.org/v2/projects/geyser/versions/2.12.0/builds/1265/downloads/spigot",
+    "sha256": "7b4054c4792f76b34ce88c43871555c5e9774898ff8d1c269e4f0b39c758eba2",
+    "version": "2.12.0",
+    "build": 1265
+  },
+  {
+    "file": "LuckPerms-Bukkit-5.5.71.jar",
+    "url": "https://cdn.modrinth.com/data/Vebnzrzj/versions/b0mk8uS6/LuckPerms-Bukkit-5.5.71.jar",
+    "sha256": "49cecb66fa1fd22a133039a490e9c1e5095a238e7cd66eb9d2a16fe6c897550d",
+    "version": "v5.5.71-bukkit"
+  },
+  {
+    "file": "worldedit-bukkit-7.2.20.jar",
+    "url": "https://cdn.modrinth.com/data/1u6JkXh5/versions/DfjpjdP5/worldedit-bukkit-7.2.20.jar",
+    "version": "7.2.20",
+    "sha256": "9638d0b618a7d0171fc9ad5b5716a22ddd251d49c04c411b0d5488081914efb2"
+  },
+  {
+    "file": "worldguard-bukkit-7.0.10-dist.jar",
+    "url": "https://cdn.modrinth.com/data/DKY9btbd/versions/W2ty7vtx/worldguard-bukkit-7.0.10-dist.jar",
+    "version": "7.0.10",
+    "sha256": "050b440bfd9c3b259b54e01f01a0014bab4f2ea93d658e82f6149ee9b1376942"
+  },
+  {
+    "file": "worldguard-bukkit-7.0.12-dist.jar",
+    "url": "https://cdn.modrinth.com/data/DKY9btbd/versions/J66QOTLZ/worldguard-bukkit-7.0.12-dist.jar",
+    "version": "7.0.12",
+    "sha256": "48b136938b3cd4816a95887847ff28e56a06fb110103344bb574739c35f9e86c"
+  },
+  {
+    "file": "worldguard-bukkit-7.0.13-dist.jar",
+    "url": "https://cdn.modrinth.com/data/DKY9btbd/versions/f9NoeotB/worldguard-bukkit-7.0.13-dist.jar",
+    "version": "7.0.13",
+    "sha256": "73b43a46aefc76514b90994532ea18bfd6d92e7bc5dcabbef9049a71778b21b5"
+  },
+  {
+    "file": "worldguard-bukkit-7.0.14-dist.jar",
+    "url": "https://cdn.modrinth.com/data/DKY9btbd/versions/PO4MKx7e/worldguard-bukkit-7.0.14-dist.jar",
+    "version": "7.0.14",
+    "sha256": "707255ab71069cda98dd1217ed1f16f88f3e40505e16416794f32d0e2666ebd3"
+  },
+  {
+    "file": "ViaVersion-5.12.1.jar",
+    "url": "https://github.com/ViaVersion/ViaVersion/releases/download/5.12.1/ViaVersion-5.12.1.jar",
+    "version": "5.12.1",
+    "sha256": "b8033807e7182c35003a45962352dd642c1e91880ca281da3a43cb6f481a95a2"
+  },
+  {
+    "file": "AuthMe-6.0.1-Spigot-Legacy.jar",
+    "url": "https://github.com/AuthMe/AuthMeReloaded/releases/download/6.0.1/AuthMe-6.0.1-Spigot-Legacy.jar",
+    "version": "6.0.1",
+    "sha256": "e0f4560420371db95eacdc960d78dd6cc8c5ff62e2f5ad37c61d92187180ae9b"
+  }
+]

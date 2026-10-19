@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "package": "com.dsh.mclogin.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "AnvilMenuAccess",
+    "ConnectionGuardMixin",
+    "PlayerGuardMixin",
+    "ItemPickupGuardMixin",
+    "CommandGuardMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

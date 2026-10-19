@@ -1,0 +1,8 @@
+name: MCLoginTestFixture
+version: '1'
+main: com.dsh.mclogin.testfixture.CompatibilityFixture
+api-version: '1.20'
+depend: [MCLogin]
+commands:
+  compatprobe:
+    description: Console-only isolated authentication integration tests

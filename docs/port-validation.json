@@ -1,0 +1,853 @@
+{
+  "schema_version": 1,
+  "validated_at_utc": "2026-10-19T21:31:29.895841+00:00",
+  "baseline_commit": "de45463e7a0d8e4b36e3429798bf2c018f59605c",
+  "environment": {
+    "platform": "Linux-6.12.111+deb13-amd64-x86_64-with-glibc2.41",
+    "python": "3.13.5",
+    "node": "v22.20.0",
+    "protocol_client": "minecraft-protocol 1.68.0",
+    "game_java": {
+      "1.20.4": "17.0.20.1",
+      "other_versions": "21"
+    },
+    "development_additional_toolchains": {
+      "ForgeGradle7_mavenizer": "25.0.4.1",
+      "ForgeGradle7_launcher_helper": "8u504"
+    }
+  },
+  "source_digest_definition": "SHA-256 of sorted UTF-8 lines: <file sha256>  <project-relative path>\\n for src/** files, build.gradle, settings.gradle, gradle.properties, gradle/wrapper/gradle-wrapper.properties",
+  "ports": [
+    {
+      "minecraft": "1.20.4",
+      "loader": "Fabric",
+      "project": "1.20.4+Fabric",
+      "dependencies": {
+        "fabric_loader": "0.19.5",
+        "fabric_api": "0.97.3+1.20.4"
+      },
+      "source_digest": "7e9bbbaf876bf59ade6ecd93d00b430725aae77e652ce482b1dcfe63ac1fb019",
+      "build": {
+        "minecraft": "1.20.4",
+        "loader": "Fabric",
+        "exit_code": 0,
+        "seconds": 10,
+        "log": ".codex-work/build-logs/1.20.4+Fabric.log",
+        "artifact": "1.20.4+Fabric/mclogin-1.20.4-fabric-1.1.0.jar",
+        "sha256": "cfad75005fdce42b77a4ff430ea4f5bd23ae024c0c2da59490051444b2e88707",
+        "passed": true,
+        "log_sha256": "5b458d3b56bd03373bdb9f2b8c9e06587b7263b1b2975888c06f3d319be81878",
+        "security_checks": {
+          "reset_tickets": 20,
+          "storage": 29,
+          "total": 49
+        }
+      },
+      "development_server": {
+        "version": "1.20.4",
+        "loader": "Fabric",
+        "mode": "development-server",
+        "passed": true,
+        "seconds": 58,
+        "checks_passed": 17,
+        "checks": [
+          "unauthenticated join opens login menu",
+          "movement packets blocked before authentication",
+          "item drop blocked before authentication",
+          "item pickup blocked before authentication",
+          "Escape reopens required authentication menu",
+          "unrelated command blocked before login",
+          "register button opens anvil",
+          "password submission opens confirmation anvil",
+          "anvil registration completes asynchronous hashing",
+          "registration keeps client connected",
+          "offline reconnect requires authentication",
+          "wrong password rejected",
+          "correct password authenticates after failure",
+          "commands available after authentication",
+          "login restriction released",
+          "movement released after authentication",
+          "item pickup released after authentication"
+        ],
+        "result_file": ".codex-work/runtime/1.20.4-fabric.json",
+        "result_sha256": "c18d53e64a84e51fca3d33997719bc6db4dbb6e63913e9d25604b6df58bca3bc",
+        "server_log_sha256": "b88966150e288e07670ce458400265e3aea71fc7aa5754c01bd70c44be545dbd",
+        "probe_log_sha256": "b3122136036713b101d765f2c08637aa24760669527a7fbe4b32303f04a481c0"
+      }
+    },
+    {
+      "minecraft": "1.20.4",
+      "loader": "Forge",
+      "project": "1.20.4+Forge",
+      "dependencies": {
+        "forge": "49.2.0"
+      },
+      "source_digest": "dfd88fdab0b807913c5120a492884c2230412a637550687c58044659de8d0e88",
+      "build": {
+        "minecraft": "1.20.4",
+        "loader": "Forge",
+        "exit_code": 0,
+        "seconds": 15,
+        "log": ".codex-work/build-logs/1.20.4+Forge.log",
+        "artifact": "1.20.4+Forge/mclogin-1.20.4-forge-1.1.0.jar",
+        "sha256": "e49ee4eb78cc7cea57a6b12fa63c728b7c41def6d2cc3b07a705866d27b95d3e",
+        "passed": true,
+        "log_sha256": "7c74b6126244f8d688f7fbdd0957c7a13b2b9f4644b83c1f18f71fdd8ac3d54d",
+        "security_checks": {
+          "reset_tickets": 20,
+          "storage": 29,
+          "total": 49
+        }
+      },
+      "development_server": {
+        "version": "1.20.4",
+        "loader": "Forge",
+        "mode": "development-server",
+        "passed": true,
+        "seconds": 80,
+        "checks_passed": 18,
+        "checks": [
+          "unauthenticated join opens login menu",
+          "movement packets blocked before authentication",
+          "item drop blocked before authentication",
+          "item pickup blocked before authentication",
+          "Escape reopens required authentication menu",
+          "unrelated command blocked before login",
+          "register button opens anvil",
+          "password submission opens confirmation anvil",
+          "anvil registration completes asynchronous hashing",
+          "registration keeps client connected",
+          "offline reconnect requires authentication",
+          "reconnect receives world and command state",
+          "wrong password rejected",
+          "correct password authenticates after failure",
+          "commands available after authentication",
+          "login restriction released",
+          "movement released after authentication",
+          "item pickup released after authentication"
+        ],
+        "result_file": ".codex-work/runtime/1.20.4-forge.json",
+        "result_sha256": "b337a50557b85ee32e2a0b2a83d0741941fa9bfac62a8d1ad17f8fa7cab97c88",
+        "server_log_sha256": "6d1011d09fd6a6f8096adf7947559be6c27f808a5470a82d53c3c3a6d1adf2f6",
+        "probe_log_sha256": "c50c1791a18ebb05459672c922fb125e357b5cbff28ffb1aac604f6a9fbed113"
+      }
+    },
+    {
+      "minecraft": "1.20.6",
+      "loader": "Fabric",
+      "project": "1.20.6+Fabric",
+      "dependencies": {
+        "fabric_loader": "0.19.5",
+        "fabric_api": "0.100.8+1.20.6"
+      },
+      "source_digest": "49cb176c0a42185b90a33e9b5b482b3a3ed740c15f298a0d7d3b7fc1d0e722ca",
+      "build": {
+        "minecraft": "1.20.6",
+        "loader": "Fabric",
+        "exit_code": 0,
+        "seconds": 14,
+        "log": ".codex-work/build-logs/1.20.6+Fabric.log",
+        "artifact": "1.20.6+Fabric/mclogin-1.20.6-fabric-1.1.0.jar",
+        "sha256": "465e912cc8050018333eb198e29519db4f2a9f65b2a77a50e6e72eb7fa16764a",
+        "passed": true,
+        "log_sha256": "6c41c8d0297002fd6b6bfd7330e68a5abcb79e36843b50b733659c91c3e3a8d6",
+        "security_checks": {
+          "reset_tickets": 20,
+          "storage": 29,
+          "total": 49
+        }
+      },
+      "development_server": {
+        "version": "1.20.6",
+        "loader": "Fabric",
+        "mode": "development-server",
+        "passed": true,
+        "seconds": 47,
+        "checks_passed": 17,
+        "checks": [
+          "unauthenticated join opens login menu",
+          "movement packets blocked before authentication",
+          "item drop blocked before authentication",
+          "item pickup blocked before authentication",
+          "Escape reopens required authentication menu",
+          "unrelated command blocked before login",
+          "register button opens anvil",
+          "password submission opens confirmation anvil",
+          "anvil registration completes asynchronous hashing",
+          "registration keeps client connected",
+          "offline reconnect requires authentication",
+          "wrong password rejected",
+          "correct password authenticates after failure",
+          "commands available after authentication",
+          "login restriction released",
+          "movement released after authentication",
+          "item pickup released after authentication"
+        ],
+        "result_file": ".codex-work/runtime/1.20.6-fabric.json",
+        "result_sha256": "fadaf53d13886704e60866f2042a85d969eababb1b70d1bf06f08899f7d3dc69",
+        "server_log_sha256": "88087abe350953632683cdda7a3bd91ec52fd8aa7464642e0a2e3b2958995fb6",
+        "probe_log_sha256": "547125860921b0d8cb1f8d0dcce299ea8603da7477959f9d9b6ad9979c91df0e"
+      }
+    },
+    {
+      "minecraft": "1.20.6",
+      "loader": "Forge",
+      "project": "1.20.6+Forge",
+      "dependencies": {
+        "forge": "50.2.1"
+      },
+      "source_digest": "498378efd2740974651735f1479b9e95ea331c8989f95e7e37bbb075598cdbd7",
+      "build": {
+        "minecraft": "1.20.6",
+        "loader": "Forge",
+        "exit_code": 0,
+        "seconds": 13,
+        "log": ".codex-work/build-logs/1.20.6+Forge.log",
+        "artifact": "1.20.6+Forge/mclogin-1.20.6-forge-1.1.0.jar",
+        "sha256": "bb1783ae94d50826c6f66a90eabb18bdb7e7f10dbf9a87ace160c57a6442c62a",
+        "passed": true,
+        "log_sha256": "f279295cc0c727e4c97f042bab152b370498e90b8b4c02380d70c7fff944720c",
+        "security_checks": {
+          "reset_tickets": 20,
+          "storage": 29,
+          "total": 49
+        }
+      },
+      "development_server": {
+        "version": "1.20.6",
+        "loader": "Forge",
+        "mode": "development-server",
+        "passed": true,
+        "seconds": 67,
+        "checks_passed": 17,
+        "checks": [
+          "unauthenticated join opens login menu",
+          "movement packets blocked before authentication",
+          "item drop blocked before authentication",
+          "item pickup blocked before authentication",
+          "Escape reopens required authentication menu",
+          "unrelated command blocked before login",
+          "register button opens anvil",
+          "password submission opens confirmation anvil",
+          "anvil registration completes asynchronous hashing",
+          "registration keeps client connected",
+          "offline reconnect requires authentication",
+          "wrong password rejected",
+          "correct password authenticates after failure",
+          "commands available after authentication",
+          "login restriction released",
+          "movement released after authentication",
+          "item pickup released after authentication"
+        ],
+        "result_file": ".codex-work/runtime/1.20.6-forge.json",
+        "result_sha256": "9fd17671529be2e47a9da9236372985b0b1e735b7788586f622a0b0ada7cc2d3",
+        "server_log_sha256": "34427dda7c4eb9deab3e22fc56e3af8358215693cbfccb0192600a3c02e9e924",
+        "probe_log_sha256": "0cb9570a91ac4b0bff8f03510ba5fffa0f1792eef1dee7329e3863c068176c17"
+      }
+    },
+    {
+      "minecraft": "1.21.1",
+      "loader": "Fabric",
+      "project": "1.21.1+Fabric",
+      "dependencies": {
+        "fabric_loader": "0.19.5",
+        "fabric_api": "0.116.17+1.21.1"
+      },
+      "source_digest": "7e5a5bbaf3bff561b4db5e12d6692476b9f5f120201d2e7cae383f16f98ae218",
+      "build": {
+        "minecraft": "1.21.1",
+        "loader": "Fabric",
+        "exit_code": 0,
+        "seconds": 14,
+        "log": ".codex-work/build-logs/1.21.1+Fabric.log",
+        "artifact": "1.21.1+Fabric/mclogin-1.21.1-fabric-1.1.0.jar",
+        "sha256": "4c5946733072ae6160c0950944a503590b13b2603ceac0475ed2efbbf5a406b8",
+        "passed": true,
+        "log_sha256": "94914a3223d91f9556615b0f0be87fa722363faa38feae0cd2e6e3597164c944",
+        "security_checks": {
+          "reset_tickets": 20,
+          "storage": 29,
+          "total": 49
+        }
+      },
+      "development_server": {
+        "version": "1.21.1",
+        "loader": "Fabric",
+        "mode": "development-server",
+        "passed": true,
+        "seconds": 52,
+        "checks_passed": 17,
+        "checks": [
+          "unauthenticated join opens login menu",
+          "movement packets blocked before authentication",
+          "item drop blocked before authentication",
+          "item pickup blocked before authentication",
+          "Escape reopens required authentication menu",
+          "unrelated command blocked before login",
+          "register button opens anvil",
+          "password submission opens confirmation anvil",
+          "anvil registration completes asynchronous hashing",
+          "registration keeps client connected",
+          "offline reconnect requires authentication",
+          "wrong password rejected",
+          "correct password authenticates after failure",
+          "commands available after authentication",
+          "login restriction released",
+          "movement released after authentication",
+          "item pickup released after authentication"
+        ],
+        "result_file": ".codex-work/runtime/1.21.1-fabric.json",
+        "result_sha256": "c8668aaf25a7558f4d968cd75f144a154a05f3b8acac880d991b1f59e418b38f",
+        "server_log_sha256": "d29be88db8c91f9fb3cbcce4ac17af68556b03374331a4ae5c7b75c091856e02",
+        "probe_log_sha256": "29982bf89116d1499833872adb7fdf7ab2c8ef0a2a95a303a52b4ce48798b7ca"
+      }
+    },
+    {
+      "minecraft": "1.21.1",
+      "loader": "Forge",
+      "project": "1.21.1+Forge",
+      "dependencies": {
+        "forge": "52.1.2"
+      },
+      "source_digest": "196442d29c2b1177e3775fc26c8636a43a9c9c2bdbefe19c29aafc137afcff47",
+      "build": {
+        "minecraft": "1.21.1",
+        "loader": "Forge",
+        "exit_code": 0,
+        "seconds": 14,
+        "log": ".codex-work/build-logs/1.21.1+Forge.log",
+        "artifact": "1.21.1+Forge/mclogin-1.21.1-forge-1.1.0.jar",
+        "sha256": "2582c053cf9ba96bc8485591375003cff0ab07940f89776f9fb614ac5fc6fa89",
+        "passed": true,
+        "log_sha256": "59dd714d1c789b4c1b129d186bb752440944137994302d1eec6113bfaec8b4e1",
+        "security_checks": {
+          "reset_tickets": 20,
+          "storage": 29,
+          "total": 49
+        }
+      },
+      "development_server": {
+        "version": "1.21.1",
+        "loader": "Forge",
+        "mode": "development-server",
+        "passed": true,
+        "seconds": 69,
+        "checks_passed": 18,
+        "checks": [
+          "unauthenticated join opens login menu",
+          "movement packets blocked before authentication",
+          "item drop blocked before authentication",
+          "item pickup blocked before authentication",
+          "Escape reopens required authentication menu",
+          "unrelated command blocked before login",
+          "register button opens anvil",
+          "password submission opens confirmation anvil",
+          "anvil registration completes asynchronous hashing",
+          "registration keeps client connected",
+          "offline reconnect requires authentication",
+          "reconnect receives world and command state",
+          "wrong password rejected",
+          "correct password authenticates after failure",
+          "commands available after authentication",
+          "login restriction released",
+          "movement released after authentication",
+          "item pickup released after authentication"
+        ],
+        "result_file": ".codex-work/runtime/1.21.1-forge.json",
+        "result_sha256": "e5f64a9ffb0a3df4435c2273c3e6e36886e775c62448c05d0fef7863f2eb0198",
+        "server_log_sha256": "f7e10269579b922b197cc6aab8d4105afde1e426004c87a03b2105710a177a1d",
+        "probe_log_sha256": "525e03f5e20cb9ada16e33b791a258279d5dd91b53eca8fba97fa0f972e286f9"
+      }
+    },
+    {
+      "minecraft": "1.21.4",
+      "loader": "Fabric",
+      "project": "1.21.4+Fabric",
+      "dependencies": {
+        "fabric_loader": "0.19.5",
+        "fabric_api": "0.119.4+1.21.4"
+      },
+      "source_digest": "a1e500f862e6eaa68a19d1656bc8a65cecaa7cccba6ff10cab1618c035da92e5",
+      "build": {
+        "minecraft": "1.21.4",
+        "loader": "Fabric",
+        "exit_code": 0,
+        "seconds": 12,
+        "log": ".codex-work/build-logs/1.21.4+Fabric.log",
+        "artifact": "1.21.4+Fabric/mclogin-1.21.4-fabric-1.1.0.jar",
+        "sha256": "a0cb9846becaeaf9516e37dffeb7a1da373d33d4ef06688390e96160f2213f83",
+        "passed": true,
+        "log_sha256": "e9a58476cb0f7942a4056f50e5c4a089710d9e451c0e2eaa6fbc1c9a5bd8a7c7",
+        "security_checks": {
+          "reset_tickets": 20,
+          "storage": 29,
+          "total": 49
+        }
+      },
+      "development_server": {
+        "version": "1.21.4",
+        "loader": "Fabric",
+        "mode": "development-server",
+        "passed": true,
+        "seconds": 35,
+        "checks_passed": 17,
+        "checks": [
+          "unauthenticated join opens login menu",
+          "movement packets blocked before authentication",
+          "item drop blocked before authentication",
+          "item pickup blocked before authentication",
+          "Escape reopens required authentication menu",
+          "unrelated command blocked before login",
+          "register button opens anvil",
+          "password submission opens confirmation anvil",
+          "anvil registration completes asynchronous hashing",
+          "registration keeps client connected",
+          "offline reconnect requires authentication",
+          "wrong password rejected",
+          "correct password authenticates after failure",
+          "commands available after authentication",
+          "login restriction released",
+          "movement released after authentication",
+          "item pickup released after authentication"
+        ],
+        "result_file": ".codex-work/runtime/1.21.4-fabric.json",
+        "result_sha256": "11cc82e840c18d117fa5650be543c07534f226484c4843155b0a3b369a6b2d65",
+        "server_log_sha256": "8202c912df7e4ccd88d41ffab160ea127f155b0f6e8cd3c14b83d9a79d4d6249",
+        "probe_log_sha256": "72468a39eac7a2789259f8e81a8e512b05510bb6d61c9c08f63d0e6af5b8be13"
+      }
+    },
+    {
+      "minecraft": "1.21.4",
+      "loader": "Forge",
+      "project": "1.21.4+Forge",
+      "dependencies": {
+        "forge": "54.1.6"
+      },
+      "source_digest": "e65c152c660c5c4805d5df3e20f57b27a16732cffbbb4893bd0a28592094d023",
+      "build": {
+        "minecraft": "1.21.4",
+        "loader": "Forge",
+        "exit_code": 0,
+        "seconds": 16,
+        "log": ".codex-work/build-logs/1.21.4+Forge.log",
+        "artifact": "1.21.4+Forge/mclogin-1.21.4-forge-1.1.0.jar",
+        "sha256": "5ad45151b2a269705727cf992dafa6bfc71e638b1857c75dc78bae5d7279e052",
+        "passed": true,
+        "log_sha256": "88871b99395464abf5769463ed2f16dd8656a341a86b64a71f96a7d9e8aeaa74",
+        "security_checks": {
+          "reset_tickets": 20,
+          "storage": 29,
+          "total": 49
+        }
+      },
+      "development_server": {
+        "version": "1.21.4",
+        "loader": "Forge",
+        "mode": "development-server",
+        "passed": true,
+        "seconds": 72,
+        "checks_passed": 18,
+        "checks": [
+          "unauthenticated join opens login menu",
+          "movement packets blocked before authentication",
+          "item drop blocked before authentication",
+          "item pickup blocked before authentication",
+          "Escape reopens required authentication menu",
+          "unrelated command blocked before login",
+          "register button opens anvil",
+          "password submission opens confirmation anvil",
+          "anvil registration completes asynchronous hashing",
+          "registration keeps client connected",
+          "offline reconnect requires authentication",
+          "reconnect receives world and command state",
+          "wrong password rejected",
+          "correct password authenticates after failure",
+          "commands available after authentication",
+          "login restriction released",
+          "movement released after authentication",
+          "item pickup released after authentication"
+        ],
+        "result_file": ".codex-work/runtime/1.21.4-forge.json",
+        "result_sha256": "22b2b9e13daaa7b57e2e4b33cd3359a9482e8d94ca47cd5aebf43efab40f73b2",
+        "server_log_sha256": "de49f13f6fff7ebd8c1bca4fce56285da3983ca71aa0b0271d6a78b0b5e63e31",
+        "probe_log_sha256": "09737b02268e2fcf9c16dd3729f543d0236472e213f8dc46bd9af77692f9a0b1"
+      }
+    },
+    {
+      "minecraft": "1.21.8",
+      "loader": "Fabric",
+      "project": "1.21.8+Fabric",
+      "dependencies": {
+        "fabric_loader": "0.19.5",
+        "fabric_api": "0.136.1+1.21.8"
+      },
+      "source_digest": "996174a1d74162da3ed3aef62ca0d0958e12a1428e3dbce24108ff296c494396",
+      "build": {
+        "minecraft": "1.21.8",
+        "loader": "Fabric",
+        "exit_code": 0,
+        "seconds": 10,
+        "log": ".codex-work/build-logs/1.21.8+Fabric.log",
+        "artifact": "1.21.8+Fabric/mclogin-1.21.8-fabric-1.1.0.jar",
+        "sha256": "e27c52ffef15136d1555d0be93554140eaae5ad06cbdac9d68be718331fb309a",
+        "passed": true,
+        "log_sha256": "ad6948cc547309e8f279c032190939e8b1503ee4fe1bfa3d44aa9e13ec0a02d8",
+        "security_checks": {
+          "reset_tickets": 20,
+          "storage": 29,
+          "total": 49
+        }
+      },
+      "development_server": {
+        "version": "1.21.8",
+        "loader": "Fabric",
+        "mode": "development-server",
+        "passed": true,
+        "seconds": 44,
+        "checks_passed": 17,
+        "checks": [
+          "unauthenticated join opens login menu",
+          "movement packets blocked before authentication",
+          "item drop blocked before authentication",
+          "item pickup blocked before authentication",
+          "Escape reopens required authentication menu",
+          "unrelated command blocked before login",
+          "register button opens anvil",
+          "password submission opens confirmation anvil",
+          "anvil registration completes asynchronous hashing",
+          "registration keeps client connected",
+          "offline reconnect requires authentication",
+          "wrong password rejected",
+          "correct password authenticates after failure",
+          "commands available after authentication",
+          "login restriction released",
+          "movement released after authentication",
+          "item pickup released after authentication"
+        ],
+        "result_file": ".codex-work/runtime/1.21.8-fabric.json",
+        "result_sha256": "8fc60547a60668db37f5864c81c5a9bfe0ac6d0898f2ac9769ba012f1c730b9a",
+        "server_log_sha256": "7f22f0d497a99a7c7b8d9992116759f357f2bddaa0d8c504db32bf98c7134686",
+        "probe_log_sha256": "53a3f15603ff453999c05e8ca2cf237c182a9e999ab8efd453977d984586742f"
+      }
+    },
+    {
+      "minecraft": "1.21.8",
+      "loader": "Forge",
+      "project": "1.21.8+Forge",
+      "dependencies": {
+        "forge": "58.1.26"
+      },
+      "source_digest": "e83e21a573fc0fc6770e1bcc6adf222603ac5391edec5722b58a82c2fb15838c",
+      "build": {
+        "minecraft": "1.21.8",
+        "loader": "Forge",
+        "exit_code": 0,
+        "seconds": 12,
+        "log": ".codex-work/build-logs/1.21.8+Forge.log",
+        "artifact": "1.21.8+Forge/mclogin-1.21.8-forge-1.1.0.jar",
+        "sha256": "e291196b3fba904ca5950b68bb4342126c7852679388e81c0ff5f86b100eefc6",
+        "passed": true,
+        "log_sha256": "b8b3f4c9219b7d6010a8184b677ee57f066f75197354f77881869b298a1c981b",
+        "security_checks": {
+          "reset_tickets": 20,
+          "storage": 29,
+          "total": 49
+        }
+      },
+      "development_server": {
+        "version": "1.21.8",
+        "loader": "Forge",
+        "mode": "development-server",
+        "passed": true,
+        "seconds": 45,
+        "checks_passed": 18,
+        "checks": [
+          "unauthenticated join opens login menu",
+          "movement packets blocked before authentication",
+          "item drop blocked before authentication",
+          "item pickup blocked before authentication",
+          "Escape reopens required authentication menu",
+          "unrelated command blocked before login",
+          "register button opens anvil",
+          "password submission opens confirmation anvil",
+          "anvil registration completes asynchronous hashing",
+          "registration keeps client connected",
+          "offline reconnect requires authentication",
+          "reconnect receives world and command state",
+          "wrong password rejected",
+          "correct password authenticates after failure",
+          "commands available after authentication",
+          "login restriction released",
+          "movement released after authentication",
+          "item pickup released after authentication"
+        ],
+        "result_file": ".codex-work/runtime/1.21.8-forge.json",
+        "result_sha256": "0a75fd9190e779f6d46288e9761a4c9b84b70e47c17dc89a17de20ab670ff115",
+        "server_log_sha256": "f0864506fb4f8a08c9aea988955512671ce47d79ccb11512e12d568838cb40ad",
+        "probe_log_sha256": "4ece72fb4e7f45f182ea81fd0806551863ec25aea4fe5f0f4a206b8c2aad9066"
+      }
+    },
+    {
+      "minecraft": "1.21.11",
+      "loader": "Fabric",
+      "project": "1.21.11+Fabric",
+      "dependencies": {
+        "fabric_loader": "0.19.5",
+        "fabric_api": "0.141.6+1.21.11"
+      },
+      "source_digest": "55d27501884086f8cdbb78bb0abd3b165171c2a08b8466f7d744f66b684a220a",
+      "build": {
+        "minecraft": "1.21.11",
+        "loader": "Fabric",
+        "exit_code": 0,
+        "seconds": 10,
+        "log": ".codex-work/build-logs/1.21.11+Fabric.log",
+        "artifact": "1.21.11+Fabric/mclogin-1.21.11-fabric-1.1.0.jar",
+        "sha256": "4aef7ecf6bdc89b754c4419cb172cdc5c28d42c8252ac39b945b26de23dd5b52",
+        "passed": true,
+        "log_sha256": "4acf067bf738cf8fd422dd1fe37fb4c25c38217e0dad0cd4035fe0af002e9493",
+        "security_checks": {
+          "reset_tickets": 20,
+          "storage": 29,
+          "total": 49
+        }
+      },
+      "development_server": {
+        "version": "1.21.11",
+        "loader": "Fabric",
+        "mode": "development-server",
+        "passed": true,
+        "seconds": 41,
+        "checks_passed": 18,
+        "checks": [
+          "unauthenticated join opens login menu",
+          "movement packets blocked before authentication",
+          "item drop blocked before authentication",
+          "item pickup blocked before authentication",
+          "Escape reopens required authentication menu",
+          "unrelated command blocked before login",
+          "register button opens anvil",
+          "password submission opens confirmation anvil",
+          "anvil registration completes asynchronous hashing",
+          "registration keeps client connected",
+          "offline reconnect requires authentication",
+          "reconnect receives world and command state",
+          "wrong password rejected",
+          "correct password authenticates after failure",
+          "commands available after authentication",
+          "login restriction released",
+          "movement released after authentication",
+          "item pickup released after authentication"
+        ],
+        "result_file": ".codex-work/runtime/1.21.11-fabric.json",
+        "result_sha256": "717bc470bf010ce12e034762f8c17eea109383730f5ccc1e5729ca4699f5fd3e",
+        "server_log_sha256": "d6b71ad171a54bb8bce14251034f637f898eb507f0b074049511cb267787b8b0",
+        "probe_log_sha256": "e58885c1791ecebf0e5e415742a5c73a47053f0e15edb3612ab32534e0258f9b"
+      }
+    },
+    {
+      "minecraft": "1.21.11",
+      "loader": "Forge",
+      "project": "1.21.11+Forge",
+      "dependencies": {
+        "forge": "61.2.4"
+      },
+      "source_digest": "c5079e9c23bacf57e984b7bbe6bb263c19c6702eed227c884c5fd343928e2fd7",
+      "build": {
+        "minecraft": "1.21.11",
+        "loader": "Forge",
+        "exit_code": 0,
+        "seconds": 10,
+        "log": ".codex-work/build-logs/1.21.11+Forge.log",
+        "artifact": "1.21.11+Forge/mclogin-1.21.11-forge-1.1.0.jar",
+        "sha256": "d5cfc6175d8c797474eee1f0a5bd4f96861ea537c99579494cf2fa56c8ca15ee",
+        "passed": true,
+        "log_sha256": "1344f852d3d2e3fd8584e79bc96637d35f84edd70443b99f5993d405f63ac9d9",
+        "security_checks": {
+          "reset_tickets": 20,
+          "storage": 29,
+          "total": 49
+        }
+      },
+      "development_server": {
+        "version": "1.21.11",
+        "loader": "Forge",
+        "mode": "development-server",
+        "passed": true,
+        "seconds": 50,
+        "checks_passed": 18,
+        "checks": [
+          "unauthenticated join opens login menu",
+          "movement packets blocked before authentication",
+          "item drop blocked before authentication",
+          "item pickup blocked before authentication",
+          "Escape reopens required authentication menu",
+          "unrelated command blocked before login",
+          "register button opens anvil",
+          "password submission opens confirmation anvil",
+          "anvil registration completes asynchronous hashing",
+          "registration keeps client connected",
+          "offline reconnect requires authentication",
+          "reconnect receives world and command state",
+          "wrong password rejected",
+          "correct password authenticates after failure",
+          "commands available after authentication",
+          "login restriction released",
+          "movement released after authentication",
+          "item pickup released after authentication"
+        ],
+        "result_file": ".codex-work/runtime/1.21.11-forge.json",
+        "result_sha256": "bbd922afde5e6f8084c6e0bc1bff28d55976cc0cb3c6a4ed31c6090291bbcde8",
+        "server_log_sha256": "0cb196de9b3ec38c1ee91f8a3dd2febf7dd8160ba0d65f94fd21033bab7bbc5a",
+        "probe_log_sha256": "cb6f03e1c1824c4e248772a633f498696164a4fb60422a5809597e17b8a439b3"
+      }
+    }
+  ],
+  "production_servers": [
+    {
+      "version": "1.20.4",
+      "loader": "Forge",
+      "mode": "production-jar",
+      "passed": true,
+      "artifact_sha256": "e49ee4eb78cc7cea57a6b12fa63c728b7c41def6d2cc3b07a705866d27b95d3e",
+      "checks_passed": 18,
+      "seconds": 37,
+      "game_java": 17,
+      "artifact": "1.20.4+Forge/mclogin-1.20.4-forge-1.1.0.jar",
+      "checks": [
+        "unauthenticated join opens login menu",
+        "movement packets blocked before authentication",
+        "item drop blocked before authentication",
+        "item pickup blocked before authentication",
+        "Escape reopens required authentication menu",
+        "unrelated command blocked before login",
+        "register button opens anvil",
+        "password submission opens confirmation anvil",
+        "anvil registration completes asynchronous hashing",
+        "registration keeps client connected",
+        "offline reconnect requires authentication",
+        "reconnect receives world and command state",
+        "wrong password rejected",
+        "correct password authenticates after failure",
+        "commands available after authentication",
+        "login restriction released",
+        "movement released after authentication",
+        "item pickup released after authentication"
+      ],
+      "result_file": ".codex-work/runtime/1.20.4-forge-production.json",
+      "result_sha256": "e8d9fe618cafdafd7a1aa34d243c89635b39c729a5da8422bcd8f69e24fa304b",
+      "server_log_sha256": "66c08eeca26dc8b2b0b85bbb40cbada4771f5c688c1a49c9e3f23bc113303eaf",
+      "probe_log_sha256": "168855fb21816c8b1ab66d44dff66245163776c5c5f8ff0643c3c6fdc40e13ab"
+    },
+    {
+      "version": "1.20.4",
+      "loader": "Fabric",
+      "mode": "production-jar",
+      "passed": true,
+      "artifact_sha256": "cfad75005fdce42b77a4ff430ea4f5bd23ae024c0c2da59490051444b2e88707",
+      "checks_passed": 18,
+      "seconds": 45,
+      "game_java": 17,
+      "artifact": "1.20.4+Fabric/mclogin-1.20.4-fabric-1.1.0.jar",
+      "checks": [
+        "unauthenticated join opens login menu",
+        "movement packets blocked before authentication",
+        "item drop blocked before authentication",
+        "item pickup blocked before authentication",
+        "Escape reopens required authentication menu",
+        "unrelated command blocked before login",
+        "register button opens anvil",
+        "password submission opens confirmation anvil",
+        "anvil registration completes asynchronous hashing",
+        "registration keeps client connected",
+        "offline reconnect requires authentication",
+        "reconnect receives world and command state",
+        "wrong password rejected",
+        "correct password authenticates after failure",
+        "commands available after authentication",
+        "login restriction released",
+        "movement released after authentication",
+        "item pickup released after authentication"
+      ],
+      "result_file": ".codex-work/runtime/1.20.4-fabric-production.json",
+      "result_sha256": "afe911194ddf044b6371978752611e71499c29a45bf65579591f3206bcaa74d0",
+      "server_log_sha256": "1ab5e55852d72547943363dc93ca4289253a4cd169f6448efc4f16d0f928a7f5",
+      "probe_log_sha256": "b12851602e550eb6aedd8567d1781144b2c2d37c2c616c9cb65726c9dc625e1c"
+    },
+    {
+      "version": "1.21.11",
+      "loader": "Forge",
+      "mode": "production-jar",
+      "passed": true,
+      "artifact_sha256": "d5cfc6175d8c797474eee1f0a5bd4f96861ea537c99579494cf2fa56c8ca15ee",
+      "checks_passed": 18,
+      "seconds": 28,
+      "game_java": 21,
+      "artifact": "1.21.11+Forge/mclogin-1.21.11-forge-1.1.0.jar",
+      "checks": [
+        "unauthenticated join opens login menu",
+        "movement packets blocked before authentication",
+        "item drop blocked before authentication",
+        "item pickup blocked before authentication",
+        "Escape reopens required authentication menu",
+        "unrelated command blocked before login",
+        "register button opens anvil",
+        "password submission opens confirmation anvil",
+        "anvil registration completes asynchronous hashing",
+        "registration keeps client connected",
+        "offline reconnect requires authentication",
+        "reconnect receives world and command state",
+        "wrong password rejected",
+        "correct password authenticates after failure",
+        "commands available after authentication",
+        "login restriction released",
+        "movement released after authentication",
+        "item pickup released after authentication"
+      ],
+      "result_file": ".codex-work/runtime/1.21.11-forge-production.json",
+      "result_sha256": "f4224994226403362406a45a891cc551934b2b1dcc5a646fef90909887cd8eca",
+      "server_log_sha256": "6332883394497eba0bc56ff764dd1c9c66c390cd43f5ba6f16e54acc19e970a7",
+      "probe_log_sha256": "bef652b48c4aba6de1529e3bcc7cfe71a84b401c29f7e85cc67b3ad5551c8166"
+    },
+    {
+      "version": "1.21.11",
+      "loader": "Fabric",
+      "mode": "production-jar",
+      "passed": true,
+      "artifact_sha256": "4aef7ecf6bdc89b754c4419cb172cdc5c28d42c8252ac39b945b26de23dd5b52",
+      "checks_passed": 18,
+      "seconds": 26,
+      "game_java": 21,
+      "artifact": "1.21.11+Fabric/mclogin-1.21.11-fabric-1.1.0.jar",
+      "checks": [
+        "unauthenticated join opens login menu",
+        "movement packets blocked before authentication",
+        "item drop blocked before authentication",
+        "item pickup blocked before authentication",
+        "Escape reopens required authentication menu",
+        "unrelated command blocked before login",
+        "register button opens anvil",
+        "password submission opens confirmation anvil",
+        "anvil registration completes asynchronous hashing",
+        "registration keeps client connected",
+        "offline reconnect requires authentication",
+        "reconnect receives world and command state",
+        "wrong password rejected",
+        "correct password authenticates after failure",
+        "commands available after authentication",
+        "login restriction released",
+        "movement released after authentication",
+        "item pickup released after authentication"
+      ],
+      "result_file": ".codex-work/runtime/1.21.11-fabric-production.json",
+      "result_sha256": "5695abf4e2ac14d68d111b96c5e3a694bd00808c47edec6e2a0fa3ebf56ae5fe",
+      "server_log_sha256": "9fa178c1b16be3e1285d7eb66589ee7382561836c6f0ade2b22b0186510c4468",
+      "probe_log_sha256": "b6cc90ef933d6eb9d3665d71ab8196629a8e3030ea5eeab05423077030e3531b"
+    }
+  ],
+  "limitations": [
+    "Protocol integration on isolated offline loopback servers with temporary accounts; not a production load or identity verification test.",
+    "For 1.20.6 and 1.21.1 only the unsupported upstream declare_recipes decoder is bypassed, preserving the recipe payload as bytes; menus/items/authentication packets are decoded normally.",
+    "No human visual/audio acceptance, large modpack/proxy compatibility, external password reset provider integration, or full configuration matrix verification."
+  ]
+}

@@ -30,8 +30,18 @@ src/generated/
 
 # 运行时数据（账号库，不应提交）
 accounts.yml
-accounts.yml.bak
+accounts.yml.*
 
 # 日志
 logs/
 *.log
+
+# Local toolchains, downloaded MDKs and build investigation logs
+.codex-work/
+
+# Local script dependencies
+__pycache__/
+node_modules/
+
+# Packaged build outputs
+dist/

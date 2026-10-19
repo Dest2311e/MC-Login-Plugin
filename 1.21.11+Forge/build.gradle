@@ -1,0 +1,34 @@
+plugins { id 'java'; id 'net.minecraftforge.gradle' version '7.0.40' }
+version = mod_version
+group = mod_group_id
+base { archivesName = "mclogin-${minecraft_version}-forge" }
+java.toolchain.languageVersion = JavaLanguageVersion.of(java_version as int)
+minecraft {
+    mappings channel: 'official', version: minecraft_version
+    runs { register('server') { workingDir = layout.projectDirectory.dir('run'); args '--nogui' } }
+}
+repositories {
+    minecraft.mavenizer(it)
+    maven fg.forgeMaven
+    maven fg.minecraftLibsMaven
+    mavenCentral()
+}
+dependencies {
+    implementation minecraft.dependency("net.minecraftforge:forge:${minecraft_version}-${forge_version}")
+    annotationProcessor 'net.minecraftforge:eventbus-validator:7.0.1'
+}
+// Keep the development mod's classes and metadata under one locator root.
+sourceSets.main.output.resourcesDir = sourceSets.main.java.destinationDirectory
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.release = java_version as int
+}
+tasks.register('securityChecks', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'com.dsh.mclogin.security.ResetTicketsTest'
+}
+tasks.named('check') { dependsOn 'securityChecks' }
+
+tasks.named("test") { failOnNoDiscoveredTests = false }

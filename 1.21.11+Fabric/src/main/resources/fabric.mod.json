@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "mclogin",
+  "version": "1.1.0",
+  "name": "MCLogin",
+  "authors": [
+    "DSH"
+  ],
+  "license": "MIT",
+  "environment": "server",
+  "entrypoints": {
+    "server": [
+      "com.dsh.mclogin.MCLoginMod"
+    ]
+  },
+  "mixins": [
+    "mclogin.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.19.5",
+    "minecraft": "1.21.11",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}

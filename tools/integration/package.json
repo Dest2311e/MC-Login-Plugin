@@ -1,0 +1,11 @@
+{
+  "private": true,
+  "description": "Loopback-only vanilla protocol checks for MCLogin ports",
+  "dependencies": {
+    "minecraft-protocol": "1.68.0"
+  },
+  "name": "mclogin-integration",
+  "engines": {
+    "node": ">=22"
+  }
+}

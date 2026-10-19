@@ -1,0 +1,16 @@
+# Restart after changing plugin integrations. /mclogin reload reloads these settings only.
+security:
+  pbkdf2-iterations: 600000
+  login-timeout-seconds: 120
+  max-failed-attempts: 5
+  lock-seconds: 300
+  fail-window-seconds: 600
+  ip-guard: true
+  ip-max-failed-attempts: 20
+  ip-lock-seconds: 300
+  ip-fail-window-seconds: 600
+storage:
+  autosave-seconds: 60
+  store-ip: false
+ui:
+  enabled: true

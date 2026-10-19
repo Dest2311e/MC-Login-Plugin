@@ -1,0 +1,25 @@
+name: MCLogin
+version: 1.1.0
+main: com.dsh.mclogin.bukkit.MCLoginPlugin
+api-version: '1.20'
+author: DSH
+description: Server-side authentication with Bukkit permissions and plugin integration APIs.
+softdepend: [LuckPerms, Essentials, Vault, PlaceholderAPI, WorldEdit, WorldGuard, Geyser-Spigot, floodgate, AuthMe, LoginSecurity, nLogin, OpeNLogin, FastLogin]
+commands:
+  mclogin:
+    description: MCLogin authentication and administration
+    aliases: [mlogin]
+  login:
+    description: Authenticate with MCLogin
+  register:
+    description: Register an MCLogin account
+  changepassword:
+    description: Change an MCLogin password
+  unregister:
+    description: Delete your MCLogin account
+  logout:
+    description: Require authentication again
+permissions:
+  mclogin.admin:
+    description: Inspect status, integration state and reload configuration
+    default: op

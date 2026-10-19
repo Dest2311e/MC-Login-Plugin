@@ -1,0 +1,1010 @@
+{
+  "schema_version": 1,
+  "validated_at_utc": "2026-10-19T22:41:40.060040+00:00",
+  "project": "Paper-Spigot",
+  "artifact": "mclogin-paper-spigot-1.1.0.jar",
+  "artifact_sha256": "31cb8a2021c5e69d54ec12595be433cc4385e14a3bd3cbf21efe72f229312907",
+  "source_digest": "4bc4690e717ca4f18db7b82091cd5454f8fef2e4d699aad9b152024222751f23",
+  "source_digest_definition": "SHA-256 of sorted UTF-8 lines: <sha256>  <project-relative path>\\n for src/**, build.gradle, settings.gradle, gradle/wrapper/gradle-wrapper.properties",
+  "environment": {
+    "platform": "Linux-6.12.111+deb13-amd64-x86_64-with-glibc2.41",
+    "bytecode_java": 17,
+    "protocol_client": "minecraft-protocol 1.68.0"
+  },
+  "shared_core_files_identical_to_root": [
+    "data/PlayerAccount.java",
+    "data/YamlStorage.java",
+    "security/PasswordHasher.java",
+    "security/HashExecutor.java",
+    "security/BruteForceGuard.java",
+    "security/ResetTickets.java",
+    "api/PasswordResetVerifier.java"
+  ],
+  "build": {
+    "security_assertions": 49,
+    "compatibility_assertions": 36,
+    "evidence": {
+      "path": ".codex-work/bukkit-build.log",
+      "sha256": "e629f8e2bca6c13063bef469580904a823f4af0fa03f60db2012f612706932f5"
+    }
+  },
+  "test_fixture": {
+    "path": "tools/integration/bukkit-fixture/build/libs/mclogin-compatibility-test-fixture.jar",
+    "sha256": "4ebfa6c10aedbaacce5f1a82ddd07b70cb50aca337c99b92725f641188589171"
+  },
+  "probe_source": {
+    "path": "tools/integration/probe.cjs",
+    "sha256": "af3df8e2fbcff480b53073d047de4c31e6929f15762cf940c1001c1243c78fa8"
+  },
+  "harness_source": {
+    "path": "tools/integration/run.py",
+    "sha256": "98fd3b681373c883a37c632b2e3967255dde60cc33e9ccc20b3a3468293e0326"
+  },
+  "runs": [
+    {
+      "version": "1.20.4",
+      "loader": "Paper",
+      "mode": "production-jar",
+      "passed": true,
+      "artifact_sha256": "31cb8a2021c5e69d54ec12595be433cc4385e14a3bd3cbf21efe72f229312907",
+      "checks_passed": 56,
+      "seconds": 39,
+      "scenario": "authentication",
+      "java_major": 17,
+      "checks": [
+        "unauthenticated join opens login menu",
+        "movement packets blocked before authentication",
+        "item drop blocked before authentication",
+        "item pickup blocked before authentication",
+        "Bukkit LoginService reports unauthenticated unregistered player",
+        "PlaceholderAPI reports false before authentication",
+        "LuckPerms grants Bukkit administration permission",
+        "administration permission never bypasses authentication",
+        "foreign plugin teleport cancelled before authentication",
+        "foreign plugin inventory cancelled before authentication",
+        "Essentials namespaced command blocked before authentication",
+        "Escape reopens required authentication menu",
+        "unrelated command blocked before login",
+        "register button opens anvil",
+        "password submission opens confirmation anvil",
+        "anvil registration completes asynchronous hashing",
+        "registration keeps client connected",
+        "virtual anvil items and password text never enter player inventory",
+        "offline reconnect requires authentication",
+        "reconnect receives world and command state",
+        "wrong password rejected",
+        "correct password authenticates after failure",
+        "commands available after authentication",
+        "login restriction released",
+        "movement released after authentication",
+        "item pickup released after authentication",
+        "Bukkit LoginService reports authenticated registered player",
+        "PlaceholderAPI reports true after authentication",
+        "LuckPerms permission enables authenticated administration",
+        "LuckPerms revokes Bukkit administration permission",
+        "LuckPerms permission revocation takes effect",
+        "foreign plugin inventory released after authentication",
+        "foreign plugin teleport released after authentication",
+        "Vault resolves LuckPerms permissions and Essentials economy",
+        "WorldEdit command remains available with authentication plugin",
+        "WorldGuard still cancels protected block events after authentication",
+        "unprotected block events remain available after authentication",
+        "synchronous authentication events delivered to another plugin",
+        "logout immediately requires authentication again",
+        "PlaceholderAPI clears authentication on logout",
+        "reset waits for external verifier",
+        "negative external verification cannot authorize reset",
+        "positive external verification opens reset anvil",
+        "reset requires password confirmation",
+        "external reset commits asynchronous hash",
+        "password reset does not automatically authenticate",
+        "old password rejected after reset",
+        "new password authenticates after reset",
+        "logout after reset reopens menu",
+        "second external grant opens reset anvil",
+        "revoked reset reaches confirmation without granting write",
+        "provider removal revokes already approved reset grant",
+        "revoked reset leaves existing password intact",
+        "authenticated password change completes asynchronously",
+        "password-verified unregister removes account",
+        "unregister revokes authentication and registration in Bukkit API"
+      ],
+      "test_artifacts": [
+        {
+          "file": "paper-1.20.4.jar",
+          "url": "https://fill-data.papermc.io/v1/objects/cabed3ae77cf55deba7c7d8722bc9cfd5e991201c211665f9265616d9fe5c77b/paper-1.20.4-499.jar",
+          "sha256": "cabed3ae77cf55deba7c7d8722bc9cfd5e991201c211665f9265616d9fe5c77b",
+          "minecraft": "1.20.4",
+          "build": 499
+        },
+        {
+          "file": "LuckPerms-Bukkit-5.5.71.jar",
+          "url": "https://cdn.modrinth.com/data/Vebnzrzj/versions/b0mk8uS6/LuckPerms-Bukkit-5.5.71.jar",
+          "sha256": "49cecb66fa1fd22a133039a490e9c1e5095a238e7cd66eb9d2a16fe6c897550d",
+          "version": "v5.5.71-bukkit"
+        },
+        {
+          "file": "EssentialsX-2.22.0.jar",
+          "url": "https://github.com/EssentialsX/Essentials/releases/download/2.22.0/EssentialsX-2.22.0.jar",
+          "sha256": "bda4685105977fca2e209820a9f0ad24275bd103390a03236f38e59bfdac58e6",
+          "version": "2.22.0"
+        },
+        {
+          "file": "Vault.jar",
+          "url": "https://github.com/MilkBowl/Vault/releases/download/1.7.3/Vault.jar",
+          "sha256": "a6b5ed97f43a5cf5bbaf00a7c8cd23c5afc9bd003f849875af8b36e6cf77d01d",
+          "version": "1.7.3"
+        },
+        {
+          "file": "PlaceholderAPI-2.11.6.jar",
+          "url": "https://repo.extendedclip.com/releases/me/clip/placeholderapi/2.11.6/placeholderapi-2.11.6.jar",
+          "sha256": "b20cb09db1cd79f76b9172e5114dfde6f34c558069e3bd7b72b14f718bc5dffd",
+          "version": "2.11.6"
+        },
+        {
+          "file": "worldedit-bukkit-7.2.20.jar",
+          "url": "https://cdn.modrinth.com/data/1u6JkXh5/versions/DfjpjdP5/worldedit-bukkit-7.2.20.jar",
+          "version": "7.2.20",
+          "sha256": "9638d0b618a7d0171fc9ad5b5716a22ddd251d49c04c411b0d5488081914efb2"
+        },
+        {
+          "file": "worldguard-bukkit-7.0.9-dist.jar",
+          "url": "https://cdn.modrinth.com/data/DKY9btbd/versions/NpagB1YQ/worldguard-bukkit-7.0.9-dist.jar",
+          "sha256": "0c04d30c0c98c21e820dec6f7e380993416a293d7e2646849f6dcd4efdc24287",
+          "version": "7.0.9",
+          "game_versions": [
+            "1.20",
+            "1.20.1",
+            "1.20.2",
+            "1.20.4"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "path": ".codex-work/runtime/1.20.4-paper-production.json",
+          "sha256": "d6c349615791e3f2730a4f74b6e1bf2f842f93645233b1658e5d40429687822d"
+        },
+        {
+          "path": ".codex-work/runtime/1.20.4-paper-production-probe.log",
+          "sha256": "133b5e05a3daaeb4fac6a5b590a2bcf06792692ee74029927ef5b4495d3792dd"
+        },
+        {
+          "path": ".codex-work/runtime/1.20.4-paper-production-server.log",
+          "sha256": "8b7b41d51d414c8caf0e80f433d91e4997a727df74e962403002bfbcea212e2d"
+        }
+      ],
+      "standard_server_log_contains_test_passwords": false
+    },
+    {
+      "version": "1.20.6",
+      "loader": "Paper",
+      "mode": "production-jar",
+      "passed": true,
+      "artifact_sha256": "31cb8a2021c5e69d54ec12595be433cc4385e14a3bd3cbf21efe72f229312907",
+      "checks_passed": 56,
+      "seconds": 62,
+      "scenario": "authentication",
+      "java_major": 21,
+      "checks": [
+        "unauthenticated join opens login menu",
+        "movement packets blocked before authentication",
+        "item drop blocked before authentication",
+        "item pickup blocked before authentication",
+        "Bukkit LoginService reports unauthenticated unregistered player",
+        "PlaceholderAPI reports false before authentication",
+        "LuckPerms grants Bukkit administration permission",
+        "administration permission never bypasses authentication",
+        "foreign plugin teleport cancelled before authentication",
+        "foreign plugin inventory cancelled before authentication",
+        "Essentials namespaced command blocked before authentication",
+        "Escape reopens required authentication menu",
+        "unrelated command blocked before login",
+        "register button opens anvil",
+        "password submission opens confirmation anvil",
+        "anvil registration completes asynchronous hashing",
+        "registration keeps client connected",
+        "virtual anvil items and password text never enter player inventory",
+        "offline reconnect requires authentication",
+        "reconnect receives world and command state",
+        "wrong password rejected",
+        "correct password authenticates after failure",
+        "commands available after authentication",
+        "login restriction released",
+        "movement released after authentication",
+        "item pickup released after authentication",
+        "Bukkit LoginService reports authenticated registered player",
+        "PlaceholderAPI reports true after authentication",
+        "LuckPerms permission enables authenticated administration",
+        "LuckPerms revokes Bukkit administration permission",
+        "LuckPerms permission revocation takes effect",
+        "foreign plugin inventory released after authentication",
+        "foreign plugin teleport released after authentication",
+        "Vault resolves LuckPerms permissions and Essentials economy",
+        "WorldEdit command remains available with authentication plugin",
+        "WorldGuard still cancels protected block events after authentication",
+        "unprotected block events remain available after authentication",
+        "synchronous authentication events delivered to another plugin",
+        "logout immediately requires authentication again",
+        "PlaceholderAPI clears authentication on logout",
+        "reset waits for external verifier",
+        "negative external verification cannot authorize reset",
+        "positive external verification opens reset anvil",
+        "reset requires password confirmation",
+        "external reset commits asynchronous hash",
+        "password reset does not automatically authenticate",
+        "old password rejected after reset",
+        "new password authenticates after reset",
+        "logout after reset reopens menu",
+        "second external grant opens reset anvil",
+        "revoked reset reaches confirmation without granting write",
+        "provider removal revokes already approved reset grant",
+        "revoked reset leaves existing password intact",
+        "authenticated password change completes asynchronously",
+        "password-verified unregister removes account",
+        "unregister revokes authentication and registration in Bukkit API"
+      ],
+      "test_artifacts": [
+        {
+          "file": "paper-1.20.6.jar",
+          "url": "https://fill-data.papermc.io/v1/objects/4b011f5adb5f6c72007686a223174fce82f31aeb4b34faf4652abc840b47e640/paper-1.20.6-151.jar",
+          "sha256": "4b011f5adb5f6c72007686a223174fce82f31aeb4b34faf4652abc840b47e640",
+          "minecraft": "1.20.6",
+          "build": 151
+        },
+        {
+          "file": "LuckPerms-Bukkit-5.5.71.jar",
+          "url": "https://cdn.modrinth.com/data/Vebnzrzj/versions/b0mk8uS6/LuckPerms-Bukkit-5.5.71.jar",
+          "sha256": "49cecb66fa1fd22a133039a490e9c1e5095a238e7cd66eb9d2a16fe6c897550d",
+          "version": "v5.5.71-bukkit"
+        },
+        {
+          "file": "EssentialsX-2.22.0.jar",
+          "url": "https://github.com/EssentialsX/Essentials/releases/download/2.22.0/EssentialsX-2.22.0.jar",
+          "sha256": "bda4685105977fca2e209820a9f0ad24275bd103390a03236f38e59bfdac58e6",
+          "version": "2.22.0"
+        },
+        {
+          "file": "Vault.jar",
+          "url": "https://github.com/MilkBowl/Vault/releases/download/1.7.3/Vault.jar",
+          "sha256": "a6b5ed97f43a5cf5bbaf00a7c8cd23c5afc9bd003f849875af8b36e6cf77d01d",
+          "version": "1.7.3"
+        },
+        {
+          "file": "PlaceholderAPI-2.11.6.jar",
+          "url": "https://repo.extendedclip.com/releases/me/clip/placeholderapi/2.11.6/placeholderapi-2.11.6.jar",
+          "sha256": "b20cb09db1cd79f76b9172e5114dfde6f34c558069e3bd7b72b14f718bc5dffd",
+          "version": "2.11.6"
+        },
+        {
+          "file": "worldedit-bukkit-7.3.9.jar",
+          "url": "https://cdn.modrinth.com/data/1u6JkXh5/versions/Bu1zaaoc/worldedit-bukkit-7.3.9.jar",
+          "sha256": "75df26f120ff424e62cba3a6e41b3b4e496251d5613b3c55c5f35b96bd8fd57c",
+          "version": "7.3.9",
+          "game_versions": [
+            "1.20.2",
+            "1.20.3",
+            "1.20.4",
+            "1.20.5",
+            "1.20.6",
+            "1.21",
+            "1.21.1",
+            "1.21.2",
+            "1.21.3"
+          ]
+        },
+        {
+          "file": "worldguard-bukkit-7.0.10-dist.jar",
+          "url": "https://cdn.modrinth.com/data/DKY9btbd/versions/W2ty7vtx/worldguard-bukkit-7.0.10-dist.jar",
+          "version": "7.0.10",
+          "sha256": "050b440bfd9c3b259b54e01f01a0014bab4f2ea93d658e82f6149ee9b1376942"
+        }
+      ],
+      "evidence": [
+        {
+          "path": ".codex-work/runtime/1.20.6-paper-production.json",
+          "sha256": "7cb5b510013c166e2b8788d2dae60275621c34e32a69dd654c5a74369f7590f2"
+        },
+        {
+          "path": ".codex-work/runtime/1.20.6-paper-production-probe.log",
+          "sha256": "51c45033bed2f71b3b6926a5f4e2fc861161cab13cabca496481d4b8c38f47bf"
+        },
+        {
+          "path": ".codex-work/runtime/1.20.6-paper-production-server.log",
+          "sha256": "ddd132146c8d371c693732c64ef2e2ddc132aac25c35eaadb975832b4821c2a6"
+        }
+      ],
+      "standard_server_log_contains_test_passwords": false
+    },
+    {
+      "version": "1.21.1",
+      "loader": "Paper",
+      "mode": "production-jar",
+      "passed": true,
+      "artifact_sha256": "31cb8a2021c5e69d54ec12595be433cc4385e14a3bd3cbf21efe72f229312907",
+      "checks_passed": 56,
+      "seconds": 60,
+      "scenario": "authentication",
+      "java_major": 21,
+      "checks": [
+        "unauthenticated join opens login menu",
+        "movement packets blocked before authentication",
+        "item drop blocked before authentication",
+        "item pickup blocked before authentication",
+        "Bukkit LoginService reports unauthenticated unregistered player",
+        "PlaceholderAPI reports false before authentication",
+        "LuckPerms grants Bukkit administration permission",
+        "administration permission never bypasses authentication",
+        "foreign plugin teleport cancelled before authentication",
+        "foreign plugin inventory cancelled before authentication",
+        "Essentials namespaced command blocked before authentication",
+        "Escape reopens required authentication menu",
+        "unrelated command blocked before login",
+        "register button opens anvil",
+        "password submission opens confirmation anvil",
+        "anvil registration completes asynchronous hashing",
+        "registration keeps client connected",
+        "virtual anvil items and password text never enter player inventory",
+        "offline reconnect requires authentication",
+        "reconnect receives world and command state",
+        "wrong password rejected",
+        "correct password authenticates after failure",
+        "commands available after authentication",
+        "login restriction released",
+        "movement released after authentication",
+        "item pickup released after authentication",
+        "Bukkit LoginService reports authenticated registered player",
+        "PlaceholderAPI reports true after authentication",
+        "LuckPerms permission enables authenticated administration",
+        "LuckPerms revokes Bukkit administration permission",
+        "LuckPerms permission revocation takes effect",
+        "foreign plugin inventory released after authentication",
+        "foreign plugin teleport released after authentication",
+        "Vault resolves LuckPerms permissions and Essentials economy",
+        "WorldEdit command remains available with authentication plugin",
+        "WorldGuard still cancels protected block events after authentication",
+        "unprotected block events remain available after authentication",
+        "synchronous authentication events delivered to another plugin",
+        "logout immediately requires authentication again",
+        "PlaceholderAPI clears authentication on logout",
+        "reset waits for external verifier",
+        "negative external verification cannot authorize reset",
+        "positive external verification opens reset anvil",
+        "reset requires password confirmation",
+        "external reset commits asynchronous hash",
+        "password reset does not automatically authenticate",
+        "old password rejected after reset",
+        "new password authenticates after reset",
+        "logout after reset reopens menu",
+        "second external grant opens reset anvil",
+        "revoked reset reaches confirmation without granting write",
+        "provider removal revokes already approved reset grant",
+        "revoked reset leaves existing password intact",
+        "authenticated password change completes asynchronously",
+        "password-verified unregister removes account",
+        "unregister revokes authentication and registration in Bukkit API"
+      ],
+      "test_artifacts": [
+        {
+          "file": "paper-1.21.1.jar",
+          "url": "https://fill-data.papermc.io/v1/objects/39bd8c00b9e18de91dcabd3cc3dcfa5328685a53b7187a2f63280c22e2d287b9/paper-1.21.1-133.jar",
+          "sha256": "39bd8c00b9e18de91dcabd3cc3dcfa5328685a53b7187a2f63280c22e2d287b9",
+          "minecraft": "1.21.1",
+          "build": 133
+        },
+        {
+          "file": "LuckPerms-Bukkit-5.5.71.jar",
+          "url": "https://cdn.modrinth.com/data/Vebnzrzj/versions/b0mk8uS6/LuckPerms-Bukkit-5.5.71.jar",
+          "sha256": "49cecb66fa1fd22a133039a490e9c1e5095a238e7cd66eb9d2a16fe6c897550d",
+          "version": "v5.5.71-bukkit"
+        },
+        {
+          "file": "EssentialsX-2.22.0.jar",
+          "url": "https://github.com/EssentialsX/Essentials/releases/download/2.22.0/EssentialsX-2.22.0.jar",
+          "sha256": "bda4685105977fca2e209820a9f0ad24275bd103390a03236f38e59bfdac58e6",
+          "version": "2.22.0"
+        },
+        {
+          "file": "Vault.jar",
+          "url": "https://github.com/MilkBowl/Vault/releases/download/1.7.3/Vault.jar",
+          "sha256": "a6b5ed97f43a5cf5bbaf00a7c8cd23c5afc9bd003f849875af8b36e6cf77d01d",
+          "version": "1.7.3"
+        },
+        {
+          "file": "PlaceholderAPI-2.11.6.jar",
+          "url": "https://repo.extendedclip.com/releases/me/clip/placeholderapi/2.11.6/placeholderapi-2.11.6.jar",
+          "sha256": "b20cb09db1cd79f76b9172e5114dfde6f34c558069e3bd7b72b14f718bc5dffd",
+          "version": "2.11.6"
+        },
+        {
+          "file": "worldedit-bukkit-7.3.9.jar",
+          "url": "https://cdn.modrinth.com/data/1u6JkXh5/versions/Bu1zaaoc/worldedit-bukkit-7.3.9.jar",
+          "sha256": "75df26f120ff424e62cba3a6e41b3b4e496251d5613b3c55c5f35b96bd8fd57c",
+          "version": "7.3.9",
+          "game_versions": [
+            "1.20.2",
+            "1.20.3",
+            "1.20.4",
+            "1.20.5",
+            "1.20.6",
+            "1.21",
+            "1.21.1",
+            "1.21.2",
+            "1.21.3"
+          ]
+        },
+        {
+          "file": "worldguard-bukkit-7.0.12-dist.jar",
+          "url": "https://cdn.modrinth.com/data/DKY9btbd/versions/J66QOTLZ/worldguard-bukkit-7.0.12-dist.jar",
+          "version": "7.0.12",
+          "sha256": "48b136938b3cd4816a95887847ff28e56a06fb110103344bb574739c35f9e86c"
+        }
+      ],
+      "evidence": [
+        {
+          "path": ".codex-work/runtime/1.21.1-paper-production.json",
+          "sha256": "470436f71160e11aeecc6fb71f22e3c768b0b85e3434632fa0414cab6066845c"
+        },
+        {
+          "path": ".codex-work/runtime/1.21.1-paper-production-probe.log",
+          "sha256": "b22562a79b893ac2fd081a5a9ce5cfec0319f9f6f93a34ba6fa48f36c1a3e5d6"
+        },
+        {
+          "path": ".codex-work/runtime/1.21.1-paper-production-server.log",
+          "sha256": "2704006eb2eab13d793fb928316b35f95ff5c655fe435cf2a76f1b0571a006e2"
+        }
+      ],
+      "standard_server_log_contains_test_passwords": false
+    },
+    {
+      "version": "1.21.4",
+      "loader": "Paper",
+      "mode": "production-jar",
+      "passed": true,
+      "artifact_sha256": "31cb8a2021c5e69d54ec12595be433cc4385e14a3bd3cbf21efe72f229312907",
+      "checks_passed": 56,
+      "seconds": 64,
+      "scenario": "authentication",
+      "java_major": 21,
+      "checks": [
+        "unauthenticated join opens login menu",
+        "movement packets blocked before authentication",
+        "item drop blocked before authentication",
+        "item pickup blocked before authentication",
+        "Bukkit LoginService reports unauthenticated unregistered player",
+        "PlaceholderAPI reports false before authentication",
+        "LuckPerms grants Bukkit administration permission",
+        "administration permission never bypasses authentication",
+        "foreign plugin teleport cancelled before authentication",
+        "foreign plugin inventory cancelled before authentication",
+        "Essentials namespaced command blocked before authentication",
+        "Escape reopens required authentication menu",
+        "unrelated command blocked before login",
+        "register button opens anvil",
+        "password submission opens confirmation anvil",
+        "anvil registration completes asynchronous hashing",
+        "registration keeps client connected",
+        "virtual anvil items and password text never enter player inventory",
+        "offline reconnect requires authentication",
+        "reconnect receives world and command state",
+        "wrong password rejected",
+        "correct password authenticates after failure",
+        "commands available after authentication",
+        "login restriction released",
+        "movement released after authentication",
+        "item pickup released after authentication",
+        "Bukkit LoginService reports authenticated registered player",
+        "PlaceholderAPI reports true after authentication",
+        "LuckPerms permission enables authenticated administration",
+        "LuckPerms revokes Bukkit administration permission",
+        "LuckPerms permission revocation takes effect",
+        "foreign plugin inventory released after authentication",
+        "foreign plugin teleport released after authentication",
+        "Vault resolves LuckPerms permissions and Essentials economy",
+        "WorldEdit command remains available with authentication plugin",
+        "WorldGuard still cancels protected block events after authentication",
+        "unprotected block events remain available after authentication",
+        "synchronous authentication events delivered to another plugin",
+        "logout immediately requires authentication again",
+        "PlaceholderAPI clears authentication on logout",
+        "reset waits for external verifier",
+        "negative external verification cannot authorize reset",
+        "positive external verification opens reset anvil",
+        "reset requires password confirmation",
+        "external reset commits asynchronous hash",
+        "password reset does not automatically authenticate",
+        "old password rejected after reset",
+        "new password authenticates after reset",
+        "logout after reset reopens menu",
+        "second external grant opens reset anvil",
+        "revoked reset reaches confirmation without granting write",
+        "provider removal revokes already approved reset grant",
+        "revoked reset leaves existing password intact",
+        "authenticated password change completes asynchronously",
+        "password-verified unregister removes account",
+        "unregister revokes authentication and registration in Bukkit API"
+      ],
+      "test_artifacts": [
+        {
+          "file": "paper-1.21.4.jar",
+          "url": "https://fill-data.papermc.io/v1/objects/5ee4f542f628a14c644410b08c94ea42e772ef4d29fe92973636b6813d4eaffc/paper-1.21.4-232.jar",
+          "sha256": "5ee4f542f628a14c644410b08c94ea42e772ef4d29fe92973636b6813d4eaffc",
+          "minecraft": "1.21.4",
+          "build": 232
+        },
+        {
+          "file": "LuckPerms-Bukkit-5.5.71.jar",
+          "url": "https://cdn.modrinth.com/data/Vebnzrzj/versions/b0mk8uS6/LuckPerms-Bukkit-5.5.71.jar",
+          "sha256": "49cecb66fa1fd22a133039a490e9c1e5095a238e7cd66eb9d2a16fe6c897550d",
+          "version": "v5.5.71-bukkit"
+        },
+        {
+          "file": "EssentialsX-2.22.0.jar",
+          "url": "https://github.com/EssentialsX/Essentials/releases/download/2.22.0/EssentialsX-2.22.0.jar",
+          "sha256": "bda4685105977fca2e209820a9f0ad24275bd103390a03236f38e59bfdac58e6",
+          "version": "2.22.0"
+        },
+        {
+          "file": "Vault.jar",
+          "url": "https://github.com/MilkBowl/Vault/releases/download/1.7.3/Vault.jar",
+          "sha256": "a6b5ed97f43a5cf5bbaf00a7c8cd23c5afc9bd003f849875af8b36e6cf77d01d",
+          "version": "1.7.3"
+        },
+        {
+          "file": "PlaceholderAPI-2.11.6.jar",
+          "url": "https://repo.extendedclip.com/releases/me/clip/placeholderapi/2.11.6/placeholderapi-2.11.6.jar",
+          "sha256": "b20cb09db1cd79f76b9172e5114dfde6f34c558069e3bd7b72b14f718bc5dffd",
+          "version": "2.11.6"
+        },
+        {
+          "file": "worldedit-bukkit-7.4.0.jar",
+          "url": "https://cdn.modrinth.com/data/1u6JkXh5/versions/CkT32vix/worldedit-bukkit-7.4.0.jar",
+          "sha256": "28418ec52223785ad3ddb0fabbed3460eacb7fd9d7774c842f443fb5c7fb4937",
+          "version": "7.4.0",
+          "game_versions": [
+            "1.21.4",
+            "1.21.5",
+            "1.21.6",
+            "1.21.7",
+            "1.21.8",
+            "1.21.9",
+            "1.21.10",
+            "1.21.11"
+          ]
+        },
+        {
+          "file": "worldguard-bukkit-7.0.13-dist.jar",
+          "url": "https://cdn.modrinth.com/data/DKY9btbd/versions/f9NoeotB/worldguard-bukkit-7.0.13-dist.jar",
+          "version": "7.0.13",
+          "sha256": "73b43a46aefc76514b90994532ea18bfd6d92e7bc5dcabbef9049a71778b21b5"
+        }
+      ],
+      "evidence": [
+        {
+          "path": ".codex-work/runtime/1.21.4-paper-production.json",
+          "sha256": "c653c0bd58cadf3f73094144da6334da57d7855a62464a4c2990b00e9fe48db1"
+        },
+        {
+          "path": ".codex-work/runtime/1.21.4-paper-production-probe.log",
+          "sha256": "238a331235e3336a52b35f8f6d2102c1a16c178cf950280de26028a30cb4658e"
+        },
+        {
+          "path": ".codex-work/runtime/1.21.4-paper-production-server.log",
+          "sha256": "dee5674c542f82f30b70c7507766bd8163ba82de2f429b4ed67a35a12c1be761"
+        }
+      ],
+      "standard_server_log_contains_test_passwords": false
+    },
+    {
+      "version": "1.21.8",
+      "loader": "Paper",
+      "mode": "production-jar",
+      "passed": true,
+      "artifact_sha256": "31cb8a2021c5e69d54ec12595be433cc4385e14a3bd3cbf21efe72f229312907",
+      "checks_passed": 56,
+      "seconds": 69,
+      "scenario": "authentication",
+      "java_major": 21,
+      "checks": [
+        "unauthenticated join opens login menu",
+        "movement packets blocked before authentication",
+        "item drop blocked before authentication",
+        "item pickup blocked before authentication",
+        "Bukkit LoginService reports unauthenticated unregistered player",
+        "PlaceholderAPI reports false before authentication",
+        "LuckPerms grants Bukkit administration permission",
+        "administration permission never bypasses authentication",
+        "foreign plugin teleport cancelled before authentication",
+        "foreign plugin inventory cancelled before authentication",
+        "Essentials namespaced command blocked before authentication",
+        "Escape reopens required authentication menu",
+        "unrelated command blocked before login",
+        "register button opens anvil",
+        "password submission opens confirmation anvil",
+        "anvil registration completes asynchronous hashing",
+        "registration keeps client connected",
+        "virtual anvil items and password text never enter player inventory",
+        "offline reconnect requires authentication",
+        "reconnect receives world and command state",
+        "wrong password rejected",
+        "correct password authenticates after failure",
+        "commands available after authentication",
+        "login restriction released",
+        "movement released after authentication",
+        "item pickup released after authentication",
+        "Bukkit LoginService reports authenticated registered player",
+        "PlaceholderAPI reports true after authentication",
+        "LuckPerms permission enables authenticated administration",
+        "LuckPerms revokes Bukkit administration permission",
+        "LuckPerms permission revocation takes effect",
+        "foreign plugin inventory released after authentication",
+        "foreign plugin teleport released after authentication",
+        "Vault resolves LuckPerms permissions and Essentials economy",
+        "WorldEdit command remains available with authentication plugin",
+        "WorldGuard still cancels protected block events after authentication",
+        "unprotected block events remain available after authentication",
+        "synchronous authentication events delivered to another plugin",
+        "logout immediately requires authentication again",
+        "PlaceholderAPI clears authentication on logout",
+        "reset waits for external verifier",
+        "negative external verification cannot authorize reset",
+        "positive external verification opens reset anvil",
+        "reset requires password confirmation",
+        "external reset commits asynchronous hash",
+        "password reset does not automatically authenticate",
+        "old password rejected after reset",
+        "new password authenticates after reset",
+        "logout after reset reopens menu",
+        "second external grant opens reset anvil",
+        "revoked reset reaches confirmation without granting write",
+        "provider removal revokes already approved reset grant",
+        "revoked reset leaves existing password intact",
+        "authenticated password change completes asynchronously",
+        "password-verified unregister removes account",
+        "unregister revokes authentication and registration in Bukkit API"
+      ],
+      "test_artifacts": [
+        {
+          "file": "paper-1.21.8.jar",
+          "url": "https://fill-data.papermc.io/v1/objects/8de7c52c3b02403503d16fac58003f1efef7dd7a0256786843927fa92ee57f1e/paper-1.21.8-60.jar",
+          "sha256": "8de7c52c3b02403503d16fac58003f1efef7dd7a0256786843927fa92ee57f1e",
+          "minecraft": "1.21.8",
+          "build": 60
+        },
+        {
+          "file": "LuckPerms-Bukkit-5.5.71.jar",
+          "url": "https://cdn.modrinth.com/data/Vebnzrzj/versions/b0mk8uS6/LuckPerms-Bukkit-5.5.71.jar",
+          "sha256": "49cecb66fa1fd22a133039a490e9c1e5095a238e7cd66eb9d2a16fe6c897550d",
+          "version": "v5.5.71-bukkit"
+        },
+        {
+          "file": "EssentialsX-2.22.0.jar",
+          "url": "https://github.com/EssentialsX/Essentials/releases/download/2.22.0/EssentialsX-2.22.0.jar",
+          "sha256": "bda4685105977fca2e209820a9f0ad24275bd103390a03236f38e59bfdac58e6",
+          "version": "2.22.0"
+        },
+        {
+          "file": "Vault.jar",
+          "url": "https://github.com/MilkBowl/Vault/releases/download/1.7.3/Vault.jar",
+          "sha256": "a6b5ed97f43a5cf5bbaf00a7c8cd23c5afc9bd003f849875af8b36e6cf77d01d",
+          "version": "1.7.3"
+        },
+        {
+          "file": "PlaceholderAPI-2.11.6.jar",
+          "url": "https://repo.extendedclip.com/releases/me/clip/placeholderapi/2.11.6/placeholderapi-2.11.6.jar",
+          "sha256": "b20cb09db1cd79f76b9172e5114dfde6f34c558069e3bd7b72b14f718bc5dffd",
+          "version": "2.11.6"
+        },
+        {
+          "file": "worldedit-bukkit-7.4.0.jar",
+          "url": "https://cdn.modrinth.com/data/1u6JkXh5/versions/CkT32vix/worldedit-bukkit-7.4.0.jar",
+          "sha256": "28418ec52223785ad3ddb0fabbed3460eacb7fd9d7774c842f443fb5c7fb4937",
+          "version": "7.4.0",
+          "game_versions": [
+            "1.21.4",
+            "1.21.5",
+            "1.21.6",
+            "1.21.7",
+            "1.21.8",
+            "1.21.9",
+            "1.21.10",
+            "1.21.11"
+          ]
+        },
+        {
+          "file": "worldguard-bukkit-7.0.14-dist.jar",
+          "url": "https://cdn.modrinth.com/data/DKY9btbd/versions/PO4MKx7e/worldguard-bukkit-7.0.14-dist.jar",
+          "version": "7.0.14",
+          "sha256": "707255ab71069cda98dd1217ed1f16f88f3e40505e16416794f32d0e2666ebd3"
+        }
+      ],
+      "evidence": [
+        {
+          "path": ".codex-work/runtime/1.21.8-paper-production.json",
+          "sha256": "f0b974c6a45b54eef2dd6c73e0ca967c52b347264caf6d27759211dba2def230"
+        },
+        {
+          "path": ".codex-work/runtime/1.21.8-paper-production-probe.log",
+          "sha256": "26a55dc5727a4290841fc48dc3e7946cb77169a5f2e2b9623cbe6ea1499e5504"
+        },
+        {
+          "path": ".codex-work/runtime/1.21.8-paper-production-server.log",
+          "sha256": "476c5ea2071eae37f3ef709285b626bf83c0b37cd88790d8e3905485f13d3604"
+        }
+      ],
+      "standard_server_log_contains_test_passwords": false
+    },
+    {
+      "version": "1.21.11",
+      "loader": "Paper",
+      "mode": "production-jar",
+      "passed": true,
+      "artifact_sha256": "31cb8a2021c5e69d54ec12595be433cc4385e14a3bd3cbf21efe72f229312907",
+      "checks_passed": 56,
+      "seconds": 49,
+      "scenario": "authentication",
+      "java_major": 21,
+      "checks": [
+        "unauthenticated join opens login menu",
+        "movement packets blocked before authentication",
+        "item drop blocked before authentication",
+        "item pickup blocked before authentication",
+        "Bukkit LoginService reports unauthenticated unregistered player",
+        "PlaceholderAPI reports false before authentication",
+        "LuckPerms grants Bukkit administration permission",
+        "administration permission never bypasses authentication",
+        "foreign plugin teleport cancelled before authentication",
+        "foreign plugin inventory cancelled before authentication",
+        "Essentials namespaced command blocked before authentication",
+        "Escape reopens required authentication menu",
+        "unrelated command blocked before login",
+        "register button opens anvil",
+        "password submission opens confirmation anvil",
+        "anvil registration completes asynchronous hashing",
+        "registration keeps client connected",
+        "virtual anvil items and password text never enter player inventory",
+        "offline reconnect requires authentication",
+        "reconnect receives world and command state",
+        "wrong password rejected",
+        "correct password authenticates after failure",
+        "commands available after authentication",
+        "login restriction released",
+        "movement released after authentication",
+        "item pickup released after authentication",
+        "Bukkit LoginService reports authenticated registered player",
+        "PlaceholderAPI reports true after authentication",
+        "LuckPerms permission enables authenticated administration",
+        "LuckPerms revokes Bukkit administration permission",
+        "LuckPerms permission revocation takes effect",
+        "foreign plugin inventory released after authentication",
+        "foreign plugin teleport released after authentication",
+        "Vault resolves LuckPerms permissions and Essentials economy",
+        "WorldEdit command remains available with authentication plugin",
+        "WorldGuard still cancels protected block events after authentication",
+        "unprotected block events remain available after authentication",
+        "synchronous authentication events delivered to another plugin",
+        "logout immediately requires authentication again",
+        "PlaceholderAPI clears authentication on logout",
+        "reset waits for external verifier",
+        "negative external verification cannot authorize reset",
+        "positive external verification opens reset anvil",
+        "reset requires password confirmation",
+        "external reset commits asynchronous hash",
+        "password reset does not automatically authenticate",
+        "old password rejected after reset",
+        "new password authenticates after reset",
+        "logout after reset reopens menu",
+        "second external grant opens reset anvil",
+        "revoked reset reaches confirmation without granting write",
+        "provider removal revokes already approved reset grant",
+        "revoked reset leaves existing password intact",
+        "authenticated password change completes asynchronously",
+        "password-verified unregister removes account",
+        "unregister revokes authentication and registration in Bukkit API"
+      ],
+      "test_artifacts": [
+        {
+          "file": "paper-1.21.11.jar",
+          "url": "https://fill-data.papermc.io/v1/objects/5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba/paper-1.21.11-132.jar",
+          "sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+          "minecraft": "1.21.11",
+          "build": 132
+        },
+        {
+          "file": "LuckPerms-Bukkit-5.5.71.jar",
+          "url": "https://cdn.modrinth.com/data/Vebnzrzj/versions/b0mk8uS6/LuckPerms-Bukkit-5.5.71.jar",
+          "sha256": "49cecb66fa1fd22a133039a490e9c1e5095a238e7cd66eb9d2a16fe6c897550d",
+          "version": "v5.5.71-bukkit"
+        },
+        {
+          "file": "EssentialsX-2.22.0.jar",
+          "url": "https://github.com/EssentialsX/Essentials/releases/download/2.22.0/EssentialsX-2.22.0.jar",
+          "sha256": "bda4685105977fca2e209820a9f0ad24275bd103390a03236f38e59bfdac58e6",
+          "version": "2.22.0"
+        },
+        {
+          "file": "Vault.jar",
+          "url": "https://github.com/MilkBowl/Vault/releases/download/1.7.3/Vault.jar",
+          "sha256": "a6b5ed97f43a5cf5bbaf00a7c8cd23c5afc9bd003f849875af8b36e6cf77d01d",
+          "version": "1.7.3"
+        },
+        {
+          "file": "PlaceholderAPI-2.11.6.jar",
+          "url": "https://repo.extendedclip.com/releases/me/clip/placeholderapi/2.11.6/placeholderapi-2.11.6.jar",
+          "sha256": "b20cb09db1cd79f76b9172e5114dfde6f34c558069e3bd7b72b14f718bc5dffd",
+          "version": "2.11.6"
+        },
+        {
+          "file": "worldedit-bukkit-7.4.0.jar",
+          "url": "https://cdn.modrinth.com/data/1u6JkXh5/versions/CkT32vix/worldedit-bukkit-7.4.0.jar",
+          "sha256": "28418ec52223785ad3ddb0fabbed3460eacb7fd9d7774c842f443fb5c7fb4937",
+          "version": "7.4.0",
+          "game_versions": [
+            "1.21.4",
+            "1.21.5",
+            "1.21.6",
+            "1.21.7",
+            "1.21.8",
+            "1.21.9",
+            "1.21.10",
+            "1.21.11"
+          ]
+        },
+        {
+          "file": "worldguard-bukkit-7.0.15.jar",
+          "url": "https://cdn.modrinth.com/data/DKY9btbd/versions/WaElxvDz/worldguard-bukkit-7.0.15.jar",
+          "sha256": "82109263128cb2232fd0e987f8f8bfa145f6a071c5fa92cf3d221922af863c74",
+          "version": "7.0.15",
+          "game_versions": [
+            "1.21.10",
+            "1.21.11"
+          ]
+        },
+        {
+          "file": "Geyser-Spigot.jar",
+          "url": "https://download.geysermc.org/v2/projects/geyser/versions/2.12.0/builds/1265/downloads/spigot",
+          "sha256": "7b4054c4792f76b34ce88c43871555c5e9774898ff8d1c269e4f0b39c758eba2",
+          "version": "2.12.0",
+          "build": 1265
+        },
+        {
+          "file": "floodgate-spigot.jar",
+          "url": "https://download.geysermc.org/v2/projects/floodgate/versions/2.2.5/builds/141/downloads/spigot",
+          "sha256": "21570aff9ce17d6983928e8552777760e1ede5050026b04c686b0ae112e6fd7e",
+          "version": "2.2.5",
+          "build": 141
+        },
+        {
+          "file": "ViaVersion-5.12.1.jar",
+          "url": "https://github.com/ViaVersion/ViaVersion/releases/download/5.12.1/ViaVersion-5.12.1.jar",
+          "version": "5.12.1",
+          "sha256": "b8033807e7182c35003a45962352dd642c1e91880ca281da3a43cb6f481a95a2"
+        }
+      ],
+      "evidence": [
+        {
+          "path": ".codex-work/runtime/1.21.11-paper-production.json",
+          "sha256": "a1f8ea087c5e4cd5c6e041975571f32683d6dcb889fa26f3befd52f222048049"
+        },
+        {
+          "path": ".codex-work/runtime/1.21.11-paper-production-probe.log",
+          "sha256": "78ea56e674c4ddf4cb4e4153d841a16e50bc18ac27cba3f9894040b5fffc44ae"
+        },
+        {
+          "path": ".codex-work/runtime/1.21.11-paper-production-server.log",
+          "sha256": "342fe9ac458cb8e274a11cfb39b032d0af4f6a41bdc72ba432dff272e7f4f6a9"
+        }
+      ],
+      "standard_server_log_contains_test_passwords": false
+    },
+    {
+      "version": "1.20.4",
+      "loader": "Paper",
+      "mode": "production-jar",
+      "passed": true,
+      "artifact_sha256": "31cb8a2021c5e69d54ec12595be433cc4385e14a3bd3cbf21efe72f229312907",
+      "checks_passed": 18,
+      "seconds": 30,
+      "scenario": "minimal",
+      "java_major": 17,
+      "checks": [
+        "unauthenticated join opens login menu",
+        "movement packets blocked before authentication",
+        "item drop blocked before authentication",
+        "item pickup blocked before authentication",
+        "Escape reopens required authentication menu",
+        "unrelated command blocked before login",
+        "register button opens anvil",
+        "password submission opens confirmation anvil",
+        "anvil registration completes asynchronous hashing",
+        "registration keeps client connected",
+        "offline reconnect requires authentication",
+        "reconnect receives world and command state",
+        "wrong password rejected",
+        "correct password authenticates after failure",
+        "commands available after authentication",
+        "login restriction released",
+        "movement released after authentication",
+        "item pickup released after authentication"
+      ],
+      "test_artifacts": [
+        {
+          "file": "paper-1.20.4.jar",
+          "url": "https://fill-data.papermc.io/v1/objects/cabed3ae77cf55deba7c7d8722bc9cfd5e991201c211665f9265616d9fe5c77b/paper-1.20.4-499.jar",
+          "sha256": "cabed3ae77cf55deba7c7d8722bc9cfd5e991201c211665f9265616d9fe5c77b",
+          "minecraft": "1.20.4",
+          "build": 499
+        }
+      ],
+      "evidence": [
+        {
+          "path": ".codex-work/runtime/1.20.4-paper-production-minimal.json",
+          "sha256": "50ed951a2aeea9b2e24aeeffc94ca334adab2fbaaee545a25f4c636fedaa47d0"
+        },
+        {
+          "path": ".codex-work/runtime/1.20.4-paper-production-minimal-probe.log",
+          "sha256": "785a9df913c7fcd06d8be9fcaaa73953a0a1d2bf8cdc5f054028fdbcbb83e0e9"
+        },
+        {
+          "path": ".codex-work/runtime/1.20.4-paper-production-minimal-server.log",
+          "sha256": "20aa50375d24854af51b745cb155e03de93911a85b1291de71b56803182d1412"
+        }
+      ],
+      "standard_server_log_contains_test_passwords": false
+    },
+    {
+      "version": "1.20.4",
+      "loader": "Paper",
+      "mode": "production-jar",
+      "passed": true,
+      "artifact_sha256": "31cb8a2021c5e69d54ec12595be433cc4385e14a3bd3cbf21efe72f229312907",
+      "checks_passed": 4,
+      "seconds": 40,
+      "scenario": "conflict",
+      "java_major": 17,
+      "checks": [
+        "loaded AuthMe latches authentication conflict",
+        "conflicting authentication server rejects connection",
+        "join rejection explicitly identifies conflicting plugin",
+        "no authentication menu or playable session opened during conflict"
+      ],
+      "test_artifacts": [
+        {
+          "file": "paper-1.20.4.jar",
+          "url": "https://fill-data.papermc.io/v1/objects/cabed3ae77cf55deba7c7d8722bc9cfd5e991201c211665f9265616d9fe5c77b/paper-1.20.4-499.jar",
+          "sha256": "cabed3ae77cf55deba7c7d8722bc9cfd5e991201c211665f9265616d9fe5c77b",
+          "minecraft": "1.20.4",
+          "build": 499
+        },
+        {
+          "file": "AuthMe-6.0.1-Spigot-Legacy.jar",
+          "url": "https://github.com/AuthMe/AuthMeReloaded/releases/download/6.0.1/AuthMe-6.0.1-Spigot-Legacy.jar",
+          "version": "6.0.1",
+          "sha256": "e0f4560420371db95eacdc960d78dd6cc8c5ff62e2f5ad37c61d92187180ae9b"
+        }
+      ],
+      "evidence": [
+        {
+          "path": ".codex-work/runtime/1.20.4-paper-production-conflict.json",
+          "sha256": "a964d315f372638d0986147cbdce045162ce9a328133016ac2c7444ab814179d"
+        },
+        {
+          "path": ".codex-work/runtime/1.20.4-paper-production-conflict-probe.log",
+          "sha256": "a513c6476f8894a5d5ec24e3c4538c4dccc9a0cfa23b8c711a7462d22543c688"
+        },
+        {
+          "path": ".codex-work/runtime/1.20.4-paper-production-conflict-server.log",
+          "sha256": "929df1a725771568287f0a97956cce91bd9249cb884204db10617ab3e4d4cf4d"
+        }
+      ],
+      "standard_server_log_contains_test_passwords": false
+    }
+  ],
+  "limits": [
+    "Spigot API compilation only; no standalone Spigot runtime acceptance",
+    "Geyser/Floodgate startup and Java player authentication only; no real Bedrock client",
+    "WorldGuard global block-break event probe; not an exhaustive region configuration test",
+    "No Folia, hybrid Forge/Bukkit, cross-server shared sessions or load testing",
+    "Log suppression covers standard server log; third-party spy/audit logs are outside this guarantee"
+  ]
+}

@@ -1,0 +1,24 @@
+plugins { id 'fabric-loom' version '1.10.5' }
+version = mod_version
+group = mod_group_id
+base { archivesName = "mclogin-${minecraft_version}-fabric" }
+java.toolchain.languageVersion = JavaLanguageVersion.of(java_version as int)
+repositories { mavenCentral() }
+dependencies {
+    minecraft "com.mojang:minecraft:${minecraft_version}"
+    mappings loom.officialMojangMappings()
+    modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_api_version}"
+}
+loom { serverOnlyMinecraftJar() }
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.release = java_version as int
+}
+tasks.register('securityChecks', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'com.dsh.mclogin.security.ResetTicketsTest'
+}
+tasks.named('check') { dependsOn 'securityChecks' }

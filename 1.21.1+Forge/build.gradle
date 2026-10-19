@@ -1,0 +1,33 @@
+plugins { id 'net.minecraftforge.gradle' version '6.0.54' }
+version = mod_version
+group = mod_group_id
+base { archivesName = "mclogin-${minecraft_version}-forge" }
+java.toolchain.languageVersion = JavaLanguageVersion.of(java_version as int)
+minecraft {
+    mappings channel: 'official', version: minecraft_version
+    reobf = false
+    runs {
+        server {
+            workingDirectory project.file('run')
+            args '--nogui'
+            mods { mclogin { source sourceSets.main } }
+        }
+    }
+}
+repositories { mavenCentral() }
+dependencies { minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}" }
+
+
+// Forge's development mod locator needs classes and resources in one directory.
+sourceSets.main.output.resourcesDir = sourceSets.main.java.destinationDirectory
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.release = java_version as int
+}
+tasks.register('securityChecks', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'com.dsh.mclogin.security.ResetTicketsTest'
+}
+tasks.named('check') { dependsOn 'securityChecks' }
